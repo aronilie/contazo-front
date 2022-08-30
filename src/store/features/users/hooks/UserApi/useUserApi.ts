@@ -1,4 +1,4 @@
-import RegisterUserData from "../model/User";
+import RegisterUserData from "../../model/User";
 import axios from "axios";
 
 export const apiURL = process.env.REACT_APP_USERS_API_URL;

@@ -22,8 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests",
-    "test-coverage": "jest src --watchAll=false --passWithNoTests --coverage",
+    "test": "react-scripts test",
+    "test-coverage": "jest src --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },
