@@ -11,6 +11,7 @@
     "@types/node": "^17.0.45",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
@@ -21,8 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests",
-    "test-coverage": "jest src --watchAll=false --passWithNoTests --coverage",
+    "test": "react-scripts test",
+    "test-coverage": "react-scripts test src --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },
