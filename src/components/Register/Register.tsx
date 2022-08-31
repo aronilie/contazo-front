@@ -6,6 +6,7 @@ const Register = (): JSX.Element => {
   const initialState = {
     name: "",
     surname: "",
+    email: "",
     phoneNumber: "",
     password: "",
     repeatPassword: "",
@@ -27,6 +28,7 @@ const Register = (): JSX.Element => {
       register({
         name: formData.name,
         surname: formData.surname,
+        email: formData.email,
         phoneNumber: formData.phoneNumber,
         password: formData.password,
       });
@@ -81,6 +83,21 @@ const Register = (): JSX.Element => {
               required
               onChange={onChangeData}
               value={formData.surname}
+            />
+          </div>
+          <div className="form__group">
+            <div className="form__label-container">
+              <label className="form__label" htmlFor="email">
+                Email address
+              </label>
+            </div>
+            <input
+              id="email"
+              className="form__input"
+              autoComplete="off"
+              required
+              onChange={onChangeData}
+              value={formData.email}
             />
           </div>
           <div className="form__group">

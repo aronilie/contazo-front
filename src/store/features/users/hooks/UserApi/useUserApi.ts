@@ -8,6 +8,7 @@ const useUserApi = () => {
     await axios.post(`${apiURL}users/register`, {
       name: registerUserData.name,
       surname: registerUserData.surname,
+      email: registerUserData.email,
       phoneNumber: registerUserData.phoneNumber,
       password: registerUserData.password,
     });

@@ -3,6 +3,7 @@ interface RegisterUserData {
   password: string;
   name?: string;
   surname?: string;
+  email?: string;
 }
 
 export default RegisterUserData;
