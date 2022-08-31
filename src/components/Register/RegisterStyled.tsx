@@ -2,12 +2,33 @@ import styled from "styled-components";
 import styles from "../../styles/styles";
 
 const RegisterStyled = styled.div`
-  min-width: 100vw;
+  min-width: 100%;
   min-height: 100%;
   padding: 3em;
 
+  @media (min-width: 750px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .form {
     margin: 0 auto;
+
+    @media (min-width: 750px) {
+    }
+
+    &__groups {
+      @media (min-width: 750px) {
+        display: flex;
+
+        flex-flow: row wrap;
+        justify-content: center;
+        gap: 0 100px;
+        align-items: center;
+        width: 700px;
+      }
+    }
 
     &__group {
       padding: 0 0 2em 0;
@@ -38,6 +59,12 @@ const RegisterStyled = styled.div`
       border-radius: 0.4em;
       border: none;
       font-size: ${styles.fontSizes.small};
+
+      @media (min-width: 750px) {
+        width: 300px;
+        background-color: ${styles.colors.white};
+        border: ${styles.colors.black} solid 0.05em;
+      }
     }
 
     &__input--wrong {
@@ -61,7 +88,7 @@ const RegisterStyled = styled.div`
 
     &__button {
       min-height: 3.25em;
-      min-width: 100%;
+      width: 100%;
       margin: 1em 0;
       border-radius: 0.4em;
       border: none;
@@ -71,6 +98,10 @@ const RegisterStyled = styled.div`
       font-family: "Inter", sans-serif;
       font-size: ${styles.fontSizes.small};
       font-weight: ${styles.fontWeights.semiBold};
+
+      @media (min-width: 750px) {
+        max-width: 700px;
+      }
     }
   }
 `;

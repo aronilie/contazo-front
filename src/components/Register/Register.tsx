@@ -52,83 +52,84 @@ const Register = (): JSX.Element => {
         <div className="form__heading-container">
           <span className="form__heading">Register</span>
         </div>
-
-        <div className="form__group">
-          <div className="form__label-container">
-            <label className="form__label" htmlFor="name">
-              Name
-            </label>
+        <div className="form__groups">
+          <div className="form__group">
+            <div className="form__label-container">
+              <label className="form__label" htmlFor="name">
+                Name
+              </label>
+            </div>
+            <input
+              id="name"
+              className="form__input"
+              autoComplete="off"
+              required
+              onChange={onChangeData}
+              value={formData.name}
+            />
           </div>
-          <input
-            id="name"
-            className="form__input"
-            autoComplete="off"
-            required
-            onChange={onChangeData}
-            value={formData.name}
-          />
-        </div>
-        <div className="form__group">
-          <div className="form__label-container">
-            <label className="form__label" htmlFor="surname">
-              Surname
-            </label>
+          <div className="form__group">
+            <div className="form__label-container">
+              <label className="form__label" htmlFor="surname">
+                Surname
+              </label>
+            </div>
+            <input
+              id="surname"
+              className="form__input"
+              autoComplete="off"
+              required
+              onChange={onChangeData}
+              value={formData.surname}
+            />
           </div>
-          <input
-            id="surname"
-            className="form__input"
-            autoComplete="off"
-            required
-            onChange={onChangeData}
-            value={formData.surname}
-          />
-        </div>
-        <div className="form__group">
-          <div className="form__label-container">
-            <label className="form__label" htmlFor="phoneNumber">
-              Phone number
-            </label>
+          <div className="form__group">
+            <div className="form__label-container">
+              <label className="form__label" htmlFor="phoneNumber">
+                Phone number
+              </label>
+            </div>
+            <input
+              id="phoneNumber"
+              className="form__input"
+              autoComplete="off"
+              required
+              onChange={onChangeData}
+              value={formData.phoneNumber}
+            />
           </div>
-          <input
-            id="phoneNumber"
-            className="form__input"
-            autoComplete="off"
-            required
-            onChange={onChangeData}
-            value={formData.phoneNumber}
-          />
-        </div>
-        <div className="form__group">
-          <div className="form__label-container">
-            <label className="form__label" htmlFor="password">
-              Password
-            </label>
+          <div className="form__group">
+            <div className="form__label-container">
+              <label className="form__label" htmlFor="password">
+                Password
+              </label>
+            </div>
+            <input
+              id="password"
+              className={`form__input ${fieldStatus}`}
+              type="password"
+              autoComplete="off"
+              required
+              onChange={onChangeData}
+              value={formData.password}
+            />
           </div>
-          <input
-            id="password"
-            className={`form__input ${fieldStatus}`}
-            type="password"
-            autoComplete="off"
-            required
-            onChange={onChangeData}
-            value={formData.password}
-          />
-        </div>
-        <div className="form__group">
-          <div className="form__label-container">
-            <label className="form__label" htmlFor="repeatPassword">
-              Repeat password
-            </label>
+          <div className="form__group">
+            <div className="form__label-container">
+              <label className="form__label" htmlFor="repeatPassword">
+                Repeat password
+              </label>
+            </div>
+            <input
+              id="repeatPassword"
+              className={`form__input ${fieldStatus}`}
+              type="password"
+              autoComplete="off"
+              required
+              onChange={onChangeData}
+              value={formData.repeatPassword}
+            />
           </div>
-          <input
-            id="repeatPassword"
-            className={`form__input ${fieldStatus}`}
-            type="password"
-            autoComplete="off"
-            required
-            onChange={onChangeData}
-            value={formData.repeatPassword}
-          />
         </div>
         <div className={`form-check ${failStatus}`}>
           <span className="form-check__error">Passwords don't match.</span>
