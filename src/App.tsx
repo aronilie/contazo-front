@@ -1,5 +1,7 @@
+import Register from "./components/Register/Register";
+
 function App() {
-  return <div className="app-container"></div>;
+  return <Register />;
 }
 
 export default App;
