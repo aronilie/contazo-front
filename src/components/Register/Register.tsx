@@ -52,7 +52,7 @@ const Register = (): JSX.Element => {
     <RegisterStyled>
       <form onSubmit={handleSubmit} className="form">
         <div className="form__heading-container">
-          <span className="form__heading">Register</span>
+          <h1 className="form__heading">Register</h1>
         </div>
         <div className="form__groups">
           <div className="form__group">
