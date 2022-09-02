@@ -71,6 +71,36 @@ const RegisterStyled = styled.div`
       border: ${styles.colors.red} solid 0.15em;
     }
 
+    &-password {
+      display: none;
+      padding: 0 0 2.5em 0;
+
+      &__error--active {
+        color: ${styles.colors.red};
+        display: block;
+      }
+    }
+
+    &-phone {
+      display: none;
+      padding: 0 0 2.5em 0;
+
+      &__error--active {
+        color: ${styles.colors.red};
+        display: block;
+      }
+    }
+
+    &-email {
+      display: none;
+      padding: 0 0 2.5em 0;
+
+      &__error--active {
+        color: ${styles.colors.red};
+        display: block;
+      }
+    }
+
     &-check {
       display: none;
       padding: 0 0 2.5em 0;
@@ -102,6 +132,10 @@ const RegisterStyled = styled.div`
       @media (min-width: 750px) {
         max-width: 700px;
       }
+    }
+
+    &-button__error--active {
+      background-color: ${styles.colors.mainAction};
     }
   }
 `;

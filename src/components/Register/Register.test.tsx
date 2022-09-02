@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Register from "./Register";
 
@@ -25,37 +25,79 @@ describe("Given a Register component", () => {
 
       form.forEach((input) => expect(input).toBeInTheDocument());
     });
-  });
 
-  describe("When it is instantiated with text 'registerTest'", () => {
-    test("Then it should render a username, password and repeatPassword inputs with the text", () => {
-      const newText = "registerTest";
+    test("Then it should call the mockRegister function with the new text", async () => {
+      const newText = "test@prove";
+      const newNumber = 674218987;
       render(<Register />);
+
       const form = {
-        username: screen.getByLabelText("Phone number") as HTMLInputElement,
-        password: screen.getByLabelText("Password") as HTMLInputElement,
+        name: screen.getByLabelText("Name") as HTMLInputElement,
+        surname: screen.getByLabelText("Surname") as HTMLInputElement,
+        email: screen.getByLabelText("Email address") as HTMLInputElement,
+        phoneNumber: screen.getByLabelText("Phone number") as HTMLInputElement,
+        passwd: screen.getByLabelText("Password") as HTMLInputElement,
         repeatPassword: screen.getByLabelText(
           "Repeat password"
         ) as HTMLInputElement,
       };
 
-      fireEvent.change(form.username, { target: { value: newText } });
-      fireEvent.change(form.password, { target: { value: newText } });
-      fireEvent.change(form.repeatPassword, {
-        target: { value: newText },
-      });
+      await userEvent.type(form.name, newText);
+      await userEvent.type(form.surname, newText);
+      await userEvent.type(form.email, newText);
+      await userEvent.type(form.phoneNumber, newNumber.toString());
+      await userEvent.type(form.passwd, newText);
+      await userEvent.type(form.repeatPassword, newText);
 
-      expect(form.username.value).toBe(newText);
-      expect(form.password.value).toBe(newText);
-      expect(form.repeatPassword.value).toBe(newText);
+      const submit = screen.getByRole("button", { name: "Register" });
+      await userEvent.click(submit);
+      const registerData = {
+        name: newText,
+        surname: newText,
+        email: newText,
+        phoneNumber: newNumber.toString(),
+        password: newText,
+      };
+
+      expect(mockRegisterFunction.register).toHaveBeenCalledWith(registerData);
     });
 
-    describe("And the user type is not valid", () => {
-      test("Then the button should be disabled", () => {
-        const newInvalidText = "test";
+    describe("And the inputs are password: 'registerTest' and the number: '674218987'", () => {
+      test("Then it should render a phoneNumber, password and repeatPassword inputs with the text", async () => {
+        const newText = "registerTest";
+        const newNumber = 674218987;
         render(<Register />);
         const form = {
-          username: screen.getByLabelText("Phone number") as HTMLInputElement,
+          phoneNumber: screen.getByRole("spinbutton", {
+            name: /phone number/i,
+          }) as HTMLInputElement,
+          password: screen.getByLabelText("Password") as HTMLInputElement,
+          repeatPassword: screen.getByLabelText(
+            "Repeat password"
+          ) as HTMLInputElement,
+        };
+
+        await userEvent.type(form.phoneNumber, newNumber.toString());
+        await userEvent.type(form.password, newText);
+        await userEvent.type(form.repeatPassword, newText);
+
+        expect(form.phoneNumber.value).toEqual(newNumber.toString());
+        expect(form.password.value).toBe(newText);
+        expect(form.repeatPassword.value).toBe(newText);
+      });
+    });
+
+    describe("And the value of one or more inputs are not introduced", () => {
+      test("Then the button should be disabled", async () => {
+        const text = "test text";
+        render(<Register />);
+        const form = {
+          name: screen.getByLabelText("Name") as HTMLInputElement,
+          surname: screen.getByLabelText("Surname") as HTMLInputElement,
+          email: screen.getByLabelText("Email address") as HTMLInputElement,
+          phoneNumber: screen.getByLabelText(
+            "Phone number"
+          ) as HTMLInputElement,
           password: screen.getByLabelText("Password") as HTMLInputElement,
           repeatPassword: screen.getByLabelText(
             "Repeat password"
@@ -63,17 +105,51 @@ describe("Given a Register component", () => {
         };
         const button = screen.getByRole("button", { name: "Register" });
 
-        fireEvent.change(form.username, { target: { value: newInvalidText } });
-        fireEvent.change(form.password, { target: { value: newInvalidText } });
-        fireEvent.change(form.repeatPassword, {
-          target: { value: newInvalidText },
-        });
+        await userEvent.type(form.name, text);
+        await userEvent.type(form.surname, text);
+        await userEvent.type(form.email, text);
+        await userEvent.type(form.password, text);
+        await userEvent.type(form.repeatPassword, text);
 
         expect(button).toBeDisabled();
       });
 
-      test("Then it should call the mockRegister function with the new text", async () => {
-        const newText = "registerTest";
+      test("Then the button should not be fully visible", async () => {
+        const text = "test";
+        const number = 888555888;
+        render(<Register />);
+        const form = {
+          name: screen.getByLabelText("Name") as HTMLInputElement,
+          surname: screen.getByLabelText("Surname") as HTMLInputElement,
+          email: screen.getByLabelText("Email address") as HTMLInputElement,
+          phoneNumber: screen.getByLabelText(
+            "Phone number"
+          ) as HTMLInputElement,
+          password: screen.getByLabelText("Password") as HTMLInputElement,
+          repeatPassword: screen.getByLabelText(
+            "Repeat password"
+          ) as HTMLInputElement,
+        };
+        const button = screen.getByRole("button", { name: "Register" });
+
+        await userEvent.type(form.name, text);
+        await userEvent.type(form.surname, text);
+        await userEvent.type(form.email, text);
+        await userEvent.type(form.phoneNumber, number.toString());
+        await userEvent.type(form.password, text);
+        await userEvent.type(form.repeatPassword, text);
+
+        await userEvent.clear(form.phoneNumber);
+
+        expect(button).toHaveClass("form__button ");
+      });
+    });
+
+    describe("And the user type an email without the '@' character", () => {
+      test("Then it shouldn't call mockRegister function", async () => {
+        const password = "password";
+        const email = "email";
+        const number = 555000888;
         render(<Register />);
         const form = {
           name: screen.getByLabelText("Name") as HTMLInputElement,
@@ -88,34 +164,92 @@ describe("Given a Register component", () => {
           ) as HTMLInputElement,
         };
 
-        fireEvent.change(form.name, { target: { value: newText } });
-        fireEvent.change(form.surname, { target: { value: newText } });
-        fireEvent.change(form.email, { target: { value: newText } });
-        fireEvent.change(form.phoneNumber, { target: { value: newText } });
-        fireEvent.change(form.password, { target: { value: newText } });
-        fireEvent.change(form.repeatPassword, {
-          target: { value: newText },
-        });
+        await userEvent.type(form.name, password);
+        await userEvent.type(form.surname, password);
+        await userEvent.type(form.email, email);
+        await userEvent.type(form.phoneNumber, number.toString());
+        await userEvent.type(form.password, password);
+        await userEvent.type(form.repeatPassword, password);
+
         const submit = screen.getByRole("button", { name: "Register" });
         await userEvent.click(submit);
-        const registerData = {
-          name: newText,
-          surname: newText,
-          email: newText,
-          phoneNumber: newText,
-          password: newText,
+
+        expect(mockRegisterFunction.register).not.toHaveBeenCalled();
+      });
+    });
+
+    describe("And the user type a phone number with less than 9 characters", () => {
+      test("Then it shouldn't call the mockRegister function", async () => {
+        const password = "password";
+        const email = "email@test.com";
+        const number = 555;
+        render(<Register />);
+        const form = {
+          name: screen.getByLabelText("Name") as HTMLInputElement,
+          surname: screen.getByLabelText("Surname") as HTMLInputElement,
+          email: screen.getByLabelText("Email address") as HTMLInputElement,
+          phoneNumber: screen.getByLabelText(
+            "Phone number"
+          ) as HTMLInputElement,
+          password: screen.getByLabelText("Password") as HTMLInputElement,
+          repeatPassword: screen.getByLabelText(
+            "Repeat password"
+          ) as HTMLInputElement,
         };
 
-        expect(mockRegisterFunction.register).toHaveBeenCalledWith(
-          registerData
-        );
+        await userEvent.type(form.name, password);
+        await userEvent.type(form.surname, password);
+        await userEvent.type(form.email, email);
+        await userEvent.type(form.phoneNumber, number.toString());
+        await userEvent.type(form.password, password);
+        await userEvent.type(form.repeatPassword, password);
+
+        const submit = screen.getByRole("button", { name: "Register" });
+        await userEvent.click(submit);
+
+        expect(mockRegisterFunction.register).not.toHaveBeenCalled();
+      });
+    });
+
+    describe("And the user type a password with less than 8 characters", () => {
+      test("Then it shouldn't call the mockRegister function", async () => {
+        const password = "passwd";
+        const email = "email@test.com";
+        const number = 555000888;
+        render(<Register />);
+        const form = {
+          name: screen.getByLabelText("Name") as HTMLInputElement,
+          surname: screen.getByLabelText("Surname") as HTMLInputElement,
+          email: screen.getByLabelText("Email address") as HTMLInputElement,
+          phoneNumber: screen.getByLabelText(
+            "Phone number"
+          ) as HTMLInputElement,
+          password: screen.getByLabelText("Password") as HTMLInputElement,
+          repeatPassword: screen.getByLabelText(
+            "Repeat password"
+          ) as HTMLInputElement,
+        };
+
+        await userEvent.type(form.name, password);
+        await userEvent.type(form.surname, password);
+        await userEvent.type(form.email, email);
+        await userEvent.type(form.phoneNumber, number.toString());
+        await userEvent.type(form.password, password);
+        await userEvent.type(form.repeatPassword, password);
+
+        const submit = screen.getByRole("button", { name: "Register" });
+        await userEvent.click(submit);
+
+        expect(mockRegisterFunction.register).not.toHaveBeenCalled();
       });
     });
 
     describe("And the user type different passwords", () => {
       test("Then it shouldn't call the mockRegister function", async () => {
         const password = "password";
-        const repeatPassword = "wrongPassword";
+        const repeatPassword = "wrong password";
+        const email = "email@test.com";
+        const number = 555000888;
         render(<Register />);
         const form = {
           name: screen.getByLabelText("Name") as HTMLInputElement,
@@ -130,14 +264,13 @@ describe("Given a Register component", () => {
           ) as HTMLInputElement,
         };
 
-        fireEvent.change(form.name, { target: { value: password } });
-        fireEvent.change(form.surname, { target: { value: password } });
-        fireEvent.change(form.email, { target: { value: password } });
-        fireEvent.change(form.phoneNumber, { target: { value: password } });
-        fireEvent.change(form.password, { target: { value: password } });
-        fireEvent.change(form.repeatPassword, {
-          target: { value: repeatPassword },
-        });
+        await userEvent.type(form.name, password);
+        await userEvent.type(form.surname, password);
+        await userEvent.type(form.email, email);
+        await userEvent.type(form.phoneNumber, number.toString());
+        await userEvent.type(form.password, password);
+        await userEvent.type(form.repeatPassword, repeatPassword);
+
         const submit = screen.getByRole("button", { name: "Register" });
         await userEvent.click(submit);
 
