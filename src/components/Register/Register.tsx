@@ -15,14 +15,14 @@ const Register = (): JSX.Element => {
   const fieldStatusInitialState = {
     email: "",
     phoneNumber: "",
-    password: "",
+    passwd: "",
     repeatPassword: "",
   };
 
   const failStatusInitialState = {
     email: "",
     phoneNumber: "",
-    password: "",
+    passwd: "",
     repeatPassword: "",
     button: "",
   };
@@ -41,10 +41,10 @@ const Register = (): JSX.Element => {
       setFieldStatus({ ...fieldStatus, email: "form__input--wrong" });
       setFailStatus({ ...failStatus, email: "form-email__error--active" });
     } else if (formData.password.length < 8) {
-      setFieldStatus({ ...fieldStatus, password: "form__input--wrong" });
+      setFieldStatus({ ...fieldStatus, passwd: "form__input--wrong" });
       setFailStatus({
         ...failStatus,
-        password: "form-password__error--active",
+        passwd: "form-password__error--active",
       });
     } else if (formData.phoneNumber.length < 9) {
       setFieldStatus({ ...fieldStatus, phoneNumber: "form__input--wrong" });
@@ -169,7 +169,7 @@ const Register = (): JSX.Element => {
             </div>
             <input
               id="password"
-              className={`form__input ${fieldStatus.repeatPassword} ${fieldStatus.password}`}
+              className={`form__input ${fieldStatus.repeatPassword} ${fieldStatus.passwd}`}
               type="password"
               autoComplete="off"
               required
@@ -205,7 +205,7 @@ const Register = (): JSX.Element => {
             <span className="form-phone__error">Invalid phone number.</span>
           </div>
         )}
-        {fieldStatus.password === "form__input--wrong" && (
+        {fieldStatus.passwd === "form__input--wrong" && (
           <div className={`form-password form-password__error--active`}>
             <span className="form-password__error">
               Your password must have 8 characters.

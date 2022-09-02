@@ -36,7 +36,7 @@ describe("Given a Register component", () => {
         surname: screen.getByLabelText("Surname") as HTMLInputElement,
         email: screen.getByLabelText("Email address") as HTMLInputElement,
         phoneNumber: screen.getByLabelText("Phone number") as HTMLInputElement,
-        password: screen.getByLabelText("Password") as HTMLInputElement,
+        passwd: screen.getByLabelText("Password") as HTMLInputElement,
         repeatPassword: screen.getByLabelText(
           "Repeat password"
         ) as HTMLInputElement,
@@ -46,7 +46,7 @@ describe("Given a Register component", () => {
       await userEvent.type(form.surname, newText);
       await userEvent.type(form.email, newText);
       await userEvent.type(form.phoneNumber, newNumber.toString());
-      await userEvent.type(form.password, newText);
+      await userEvent.type(form.passwd, newText);
       await userEvent.type(form.repeatPassword, newText);
 
       const submit = screen.getByRole("button", { name: "Register" });
