@@ -1,9 +1,13 @@
-interface RegisterUserData {
+export interface RegisterUserData {
   phoneNumber: string;
   password: string;
-  name?: string;
-  surname?: string;
-  email?: string;
+  name: string;
+  surname: string;
+  email: string;
 }
 
-export default RegisterUserData;
+export interface LoginUserData {
+  phoneNumber: string;
+  token: string;
+  id: string;
+}
