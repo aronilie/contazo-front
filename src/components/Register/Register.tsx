@@ -2,6 +2,7 @@ import { SyntheticEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import useUserApi from "../../store/features/users/hooks/UserApi/useUserApi";
 import LinkContainerStyled from "../../utils/components/LinkContainerStyled";
+import Button from "../Button/Button";
 import RegisterStyled from "./RegisterStyled";
 
 const Register = (): JSX.Element => {
@@ -227,13 +228,12 @@ const Register = (): JSX.Element => {
           </div>
         )}
 
-        <button
+        <Button
           className={`form__button ${failStatus.button}`}
           type="submit"
           disabled={hasEmptyFields}
-        >
-          Register
-        </button>
+          text="Register"
+        ></Button>
         <LinkContainerStyled className="link">
           <span>
             {" "}

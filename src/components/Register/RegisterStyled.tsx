@@ -35,12 +35,15 @@ const RegisterStyled = styled.div`
     }
 
     &__heading-container {
-      padding: 2em 0;
+      padding: 0 0 2em 0;
+      @media (min-width: 800px) {
+        padding: 2em 0;
+      }
     }
 
     &__heading {
       font-weight: ${styles.fontWeights.semiBold};
-      font-size: ${styles.fontSizes.medium};
+      font-size: ${styles.fontSizes.large};
     }
 
     &__label-container {
@@ -114,28 +117,6 @@ const RegisterStyled = styled.div`
         color: ${styles.colors.green};
         display: block;
       }
-    }
-
-    &__button {
-      min-height: 3.25em;
-      width: 100%;
-      margin: 1em 0;
-      border-radius: 0.4em;
-      border: none;
-      cursor: pointer;
-      background-color: ${styles.colors.main};
-      color: ${styles.colors.white};
-      font-family: "Inter", sans-serif;
-      font-size: ${styles.fontSizes.small};
-      font-weight: ${styles.fontWeights.semiBold};
-
-      @media (min-width: 750px) {
-        max-width: 700px;
-      }
-    }
-
-    &-button__error--active {
-      background-color: ${styles.colors.mainAction};
     }
   }
 `;

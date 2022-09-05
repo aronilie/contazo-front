@@ -7,6 +7,7 @@ import {
   loginFormDataInitialState,
 } from "../../utils/initialStates";
 import LinkContainerStyled from "../../utils/components/LinkContainerStyled";
+import Button from "../Button/Button";
 
 const Login = (): JSX.Element => {
   const { login } = useUserApi();
@@ -105,13 +106,12 @@ const Login = (): JSX.Element => {
           </div>
         )}
 
-        <button
+        <Button
           className={`form__button ${failStatus.button}`}
           type="submit"
           disabled={hasEmptyFields}
-        >
-          Login
-        </button>
+          text="Login"
+        ></Button>
         <LinkContainerStyled className="link">
           <span>
             {" "}
