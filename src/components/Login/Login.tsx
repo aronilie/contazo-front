@@ -1,10 +1,12 @@
 import { SyntheticEvent, useState } from "react";
+import { Link } from "react-router-dom";
+import LoginStyled from "./LoginStyled";
 import useUserApi from "../../store/features/users/hooks/UserApi/useUserApi";
 import {
   loginFailStatusInitialState,
   loginFormDataInitialState,
 } from "../../utils/initialStates";
-import LoginStyled from "./LoginStyled";
+import LinkContainerStyled from "../../utils/components/LinkContainerStyled";
 
 const Login = (): JSX.Element => {
   const { login } = useUserApi();
@@ -110,6 +112,15 @@ const Login = (): JSX.Element => {
         >
           Login
         </button>
+        <LinkContainerStyled className="link">
+          <span>
+            {" "}
+            Haven't an account yet?
+            <Link to={`/register`}>
+              <span className="link__sign">Register</span>
+            </Link>
+          </span>
+        </LinkContainerStyled>
       </form>
     </LoginStyled>
   );
