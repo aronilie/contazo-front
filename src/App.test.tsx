@@ -4,11 +4,11 @@ import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { store } from "./app/store";
 
+const route = "/register";
+
 describe("Given a App component", () => {
   describe("When it is instantiated in home", () => {
     test("Then it should show the RegisterPage page", () => {
-      const route = "/register";
-
       render(
         <MemoryRouter initialEntries={[route]}>
           <Provider store={store}>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import styles from "../../styles/styles";
 
-const RegisterStyled = styled.div`
+const LoginStyled = styled.div`
   max-width: 100%;
   min-height: 100%;
   padding: 3em;
@@ -108,4 +108,4 @@ const RegisterStyled = styled.div`
   }
 `;
 
-export default RegisterStyled;
+export default LoginStyled;

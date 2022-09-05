@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import { store } from "../../app/store";
 import Login from "./Login";
 
@@ -10,10 +11,18 @@ jest.mock(
   () => () => mockLoginFunction
 );
 
+const route = "/login";
+
 describe("Given a Register component", () => {
   describe("When it is instantiated", () => {
     test("Then it should render a 'Login' heading, phoneNumber and password inputs and a submit button", () => {
-      render(<Login />);
+      render(
+        <MemoryRouter initialEntries={[route]}>
+          <Provider store={store}>
+            <Login />
+          </Provider>
+        </MemoryRouter>
+      );
 
       const form = [
         screen.getByRole("heading", { name: "Login" }),
@@ -28,7 +37,13 @@ describe("Given a Register component", () => {
     test("Then it should call the mockLogin function with the new text", async () => {
       const newText = "test@prove";
       const newNumber = 674218987;
-      render(<Login />);
+      render(
+        <MemoryRouter initialEntries={[route]}>
+          <Provider store={store}>
+            <Login />
+          </Provider>
+        </MemoryRouter>
+      );
 
       const form = {
         phoneNumber: screen.getByLabelText("Phone number") as HTMLInputElement,
@@ -52,7 +67,13 @@ describe("Given a Register component", () => {
       test("Then it should render a phoneNumber and password inputs with the text", async () => {
         const newText = "registerTest";
         const newNumber = 674218987;
-        render(<Login />);
+        render(
+          <MemoryRouter initialEntries={[route]}>
+            <Provider store={store}>
+              <Login />
+            </Provider>
+          </MemoryRouter>
+        );
         const form = {
           phoneNumber: screen.getByRole("spinbutton", {
             name: /phone number/i,
@@ -71,7 +92,13 @@ describe("Given a Register component", () => {
     describe("And the value of one or more inputs are not introduced", () => {
       test("Then the button should be disabled", async () => {
         const text = "test text";
-        render(<Login />);
+        render(
+          <MemoryRouter initialEntries={[route]}>
+            <Provider store={store}>
+              <Login />
+            </Provider>
+          </MemoryRouter>
+        );
         const form = {
           phoneNumber: screen.getByLabelText(
             "Phone number"
@@ -88,7 +115,13 @@ describe("Given a Register component", () => {
       test("Then the button should not be fully visible", async () => {
         const text = "test";
         const number = 888555888;
-        render(<Login />);
+        render(
+          <MemoryRouter initialEntries={[route]}>
+            <Provider store={store}>
+              <Login />
+            </Provider>
+          </MemoryRouter>
+        );
         const form = {
           phoneNumber: screen.getByLabelText(
             "Phone number"
@@ -113,9 +146,11 @@ describe("Given a Register component", () => {
         const number = "618035777";
         const password = "passwordtest";
         render(
-          <Provider store={store}>
-            <Login />
-          </Provider>
+          <MemoryRouter initialEntries={[route]}>
+            <Provider store={store}>
+              <Login />
+            </Provider>
+          </MemoryRouter>
         );
         const form = {
           phoneNumber: screen.getByLabelText(
