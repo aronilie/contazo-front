@@ -2,7 +2,7 @@ import ButtonStyled from "./ButtonStyled";
 
 interface ButtonProps {
   className: string;
-  type?: "button" | "submit" | "reset" | undefined;
+  type: "button" | "submit" | "reset";
   disabled: boolean;
   text: string;
 }
