@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App";
+import { store } from "./app/store";
 
 describe("Given a App component", () => {
   describe("When it is instantiated in home", () => {
@@ -9,7 +11,9 @@ describe("Given a App component", () => {
 
       render(
         <MemoryRouter initialEntries={[route]}>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </MemoryRouter>
       );
 
