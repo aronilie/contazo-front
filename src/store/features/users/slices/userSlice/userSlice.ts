@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LoginUserData } from "../../model/User";
+import { LoginUserData } from "../../models/User";
 
 const initialState: LoginUserData = {
   phoneNumber: "",
-  id: "",
   token: "",
+  id: "",
 };
 
 const userSlice = createSlice({
@@ -13,9 +13,12 @@ const userSlice = createSlice({
   reducers: {
     loginUser: (previousState, action: PayloadAction<LoginUserData>) =>
       action.payload,
+    logoutUser: (previousState) => initialState,
   },
 });
 
-export const { loginUser: loginUserActionCreator } = userSlice.actions;
-
+export const {
+  loginUser: loginUserActionCreator,
+  logoutUser: logoutUserActionCreator,
+} = userSlice.actions;
 export default userSlice.reducer;
