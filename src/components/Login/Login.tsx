@@ -1,5 +1,4 @@
 import { SyntheticEvent, useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
 import useUserApi from "../../store/features/users/hooks/UserApi/useUserApi";
 import {
   loginFailStatusInitialState,
