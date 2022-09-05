@@ -6,7 +6,7 @@ const RegisterStyled = styled.div`
   min-height: 100%;
   padding: 3em;
 
-  @media (min-width: 750px) {
+  @media (min-width: 800px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,11 +15,11 @@ const RegisterStyled = styled.div`
   .form {
     margin: 0 auto;
 
-    @media (min-width: 750px) {
+    @media (min-width: 800px) {
     }
 
     &__groups {
-      @media (min-width: 750px) {
+      @media (min-width: 800px) {
         display: flex;
 
         flex-flow: row wrap;
@@ -63,7 +63,7 @@ const RegisterStyled = styled.div`
       border: none;
       font-size: ${styles.fontSizes.small};
 
-      @media (min-width: 750px) {
+      @media (min-width: 800px) {
         width: 300px;
         background-color: ${styles.colors.white};
         border: ${styles.colors.black} solid 0.05em;
