@@ -1,5 +1,7 @@
 import { SyntheticEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import useUserApi from "../../store/features/users/hooks/UserApi/useUserApi";
+import LinkContainerStyled from "../../utils/components/LinkContainerStyled";
 import RegisterStyled from "./RegisterStyled";
 
 const Register = (): JSX.Element => {
@@ -232,6 +234,15 @@ const Register = (): JSX.Element => {
         >
           Register
         </button>
+        <LinkContainerStyled className="link">
+          <span>
+            {" "}
+            Already have an account?
+            <Link to={`/login`}>
+              <span className="link__sign">Login</span>
+            </Link>
+          </span>
+        </LinkContainerStyled>
       </form>
     </RegisterStyled>
   );
