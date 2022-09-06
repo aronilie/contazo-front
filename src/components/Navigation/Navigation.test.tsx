@@ -1,10 +1,15 @@
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import Navigation from "./Navigation";
 
 describe("Given a Navigation component", () => {
   describe("When it is instantiated", () => {
     test("Then it should render the texts: 'Telephone', 'Contacts' and 'Favourites'", async () => {
-      render(<Navigation />);
+      render(
+        <BrowserRouter>
+          <Navigation />
+        </BrowserRouter>
+      );
 
       const telephoneText = "Telephone";
       const contactsText = "Contacts";
