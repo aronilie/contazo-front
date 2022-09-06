@@ -1,8 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import { store } from "../../app/store";
 import Login from "./Login";
 
 let mockLoginFunction = { login: jest.fn() };
