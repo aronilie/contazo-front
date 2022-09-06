@@ -42,9 +42,7 @@ describe("Given a Register component", () => {
       const newNumber = 674218987;
       render(
         <MemoryRouter initialEntries={[route]}>
-          <Provider store={store}>
-            <Register />
-          </Provider>
+          <Register />
         </MemoryRouter>
       );
 
@@ -85,9 +83,7 @@ describe("Given a Register component", () => {
         const newNumber = 674218987;
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Register />
-            </Provider>
+            <Register />
           </MemoryRouter>
         );
         const form = {
@@ -115,9 +111,7 @@ describe("Given a Register component", () => {
         const text = "test text";
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Register />
-            </Provider>
+            <Register />
           </MemoryRouter>
         );
         const form = {
@@ -148,9 +142,7 @@ describe("Given a Register component", () => {
         const number = 888555888;
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Register />
-            </Provider>
+            <Register />
           </MemoryRouter>
         );
         const form = {
@@ -187,9 +179,7 @@ describe("Given a Register component", () => {
         const number = 555000888;
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Register />
-            </Provider>
+            <Register />
           </MemoryRouter>
         );
         const form = {
@@ -227,9 +217,7 @@ describe("Given a Register component", () => {
 
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Register />
-            </Provider>
+            <Register />
           </MemoryRouter>
         );
         const form = {
@@ -266,9 +254,7 @@ describe("Given a Register component", () => {
         const number = 555000888;
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Register />
-            </Provider>
+            <Register />
           </MemoryRouter>
         );
         const form = {
@@ -306,9 +292,7 @@ describe("Given a Register component", () => {
         const number = 555000888;
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Register />
-            </Provider>
+            <Register />
           </MemoryRouter>
         );
         const form = {
