@@ -30,6 +30,11 @@ const NotFoundPageStyled = styled.div`
       margin: 0;
       font-size: ${styles.fontSizes.large};
     }
+
+    &__link {
+      display: flex;
+      justify-content: center;
+    }
   }
 `;
 

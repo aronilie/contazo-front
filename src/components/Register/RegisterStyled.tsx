@@ -68,8 +68,15 @@ const RegisterStyled = styled.div`
         background-color: ${styles.colors.white};
         border: ${styles.colors.black} solid 0.05em;
       }
-    }
 
+      &:focus {
+        outline: ${styles.colors.black} solid 2px;
+
+        @media (min-width: 800px) {
+          outline: ${styles.colors.black} solid 1.9px;
+        }
+      }
+    }
     &__input--wrong {
       border: ${styles.colors.red} solid 0.15em;
     }
