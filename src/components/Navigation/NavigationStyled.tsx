@@ -3,7 +3,7 @@ import styles from "../../styles/styles";
 
 const NavigationStyled = styled.nav`
   min-width: 100%;
-  height: 10vh;
+  height: 8vh;
   bottom: 0;
   left: 0;
   right: 0;
@@ -17,6 +17,19 @@ const NavigationStyled = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    &__link {
+      text-decoration: none;
+      color: ${styles.colors.black};
+    }
+
+    &__text {
+      font-size: ${styles.fontSizes.smaller};
+
+      @media (min-width: 800px) {
+        font-size: ${styles.fontSizes.small};
+      }
+    }
 
     &__telephone {
       display: flex;

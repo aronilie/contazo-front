@@ -18,9 +18,7 @@ describe("Given a Register component", () => {
     test("Then it should render a 'Login' heading, phoneNumber and password inputs and a submit button", () => {
       render(
         <MemoryRouter initialEntries={[route]}>
-          <Provider store={store}>
-            <Login />
-          </Provider>
+          <Login />
         </MemoryRouter>
       );
 
@@ -39,9 +37,7 @@ describe("Given a Register component", () => {
       const newNumber = 674218987;
       render(
         <MemoryRouter initialEntries={[route]}>
-          <Provider store={store}>
-            <Login />
-          </Provider>
+          <Login />
         </MemoryRouter>
       );
 
@@ -69,9 +65,7 @@ describe("Given a Register component", () => {
         const newNumber = 674218987;
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Login />
-            </Provider>
+            <Login />
           </MemoryRouter>
         );
         const form = {
@@ -94,9 +88,7 @@ describe("Given a Register component", () => {
         const text = "test text";
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Login />
-            </Provider>
+            <Login />
           </MemoryRouter>
         );
         const form = {
@@ -117,9 +109,7 @@ describe("Given a Register component", () => {
         const number = 888555888;
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Login />
-            </Provider>
+            <Login />
           </MemoryRouter>
         );
         const form = {
@@ -147,9 +137,7 @@ describe("Given a Register component", () => {
         const password = "passwordtest";
         render(
           <MemoryRouter initialEntries={[route]}>
-            <Provider store={store}>
-              <Login />
-            </Provider>
+            <Login />
           </MemoryRouter>
         );
         const form = {
