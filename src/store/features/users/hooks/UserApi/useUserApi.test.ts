@@ -51,17 +51,23 @@ describe("Given a useUserApi hook", () => {
 
 describe("When login function is called with a phone number and a password", () => {
   test("Then it should call the mockUseDispatch with a loginUserActioncreator", async () => {
-    const token =
+    const user =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI2MzBkMDBjMTE1MDllNTE2N2JiN2Y1YmIiLCJpYXQiOjE2NjIxMTA0MDJ9.EBtoJh2jDwsMhtv89FuU_O1aYBdKX_CUccvQEue5D4E";
-
+    const loginUser = {
+      phoneNumber: "888555222",
+      password: "freesabana",
+    };
     const {
       result: {
         current: { login },
       },
     } = renderHook(useUserApi, { wrapper: Wrapper });
-    await login(mockUser);
-    const user = mockFetchToken(token);
-    expect(mockUseDispatch).toHaveBeenCalledWith(loginUserActionCreator(user));
+
+    await login(loginUser);
+    const userToken = mockFetchToken(user);
+    expect(mockUseDispatch).toHaveBeenCalledWith(
+      loginUserActionCreator(userToken)
+    );
   });
 });
 

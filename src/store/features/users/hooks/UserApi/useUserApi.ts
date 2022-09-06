@@ -23,15 +23,18 @@ const useUserApi = () => {
 
   const login = async (userData: UserData) => {
     const {
-      data: { token },
+      data: {
+        user: { token },
+      },
     }: AxiosResponse<UserToken> = await axios.post(
       `${apiURL}users/login`,
       userData
     );
     const user = fetchToken(token);
 
-    localStorage.setItem("token", token);
     dispatch(loginUserActionCreator(user));
+
+    localStorage.setItem("token", token);
   };
 
   const logout = () => {
