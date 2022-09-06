@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginStyled from "./LoginStyled";
 import useUserApi from "../../store/features/users/hooks/UserApi/useUserApi";
 import {
@@ -10,6 +10,8 @@ import LinkContainerStyled from "../../utils/components/LinkContainerStyled";
 import Button from "../Button/Button";
 
 const Login = (): JSX.Element => {
+  const navigate = useNavigate();
+
   const { login } = useUserApi();
 
   const [formData, setFormData] = useState(loginFormDataInitialState);
@@ -29,6 +31,7 @@ const Login = (): JSX.Element => {
         ...failStatus,
         check: "form-check__success--active",
       });
+      navigate("/home");
     } catch {
       setFailStatus({
         ...failStatus,
@@ -116,7 +119,7 @@ const Login = (): JSX.Element => {
           <span>
             {" "}
             Haven't an account yet?
-            <Link to={`/register`}>
+            <Link to={"/register"}>
               <span className="link__sign">Register</span>
             </Link>
           </span>
