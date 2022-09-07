@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import { Link } from "react-router-dom";
-import useUserApi from "../../store/features/users/hooks/UserApi/useUserApi";
+import useUserApi from "../../features/users/hooks/useUserApi";
 import LinkContainerStyled from "../../utils/components/LinkContainerStyled";
 import Button from "../Button/Button";
 import RegisterStyled from "./RegisterStyled";

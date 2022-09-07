@@ -1,11 +1,11 @@
-import { useAppDispatch } from "../../../../../app/hooks";
-import { RegisterUserData, UserData, UserToken } from "../../models/User";
+import { useAppDispatch } from "../../../app/hooks";
+import { RegisterUserData, UserData, UserToken } from "../models/User";
 import axios, { AxiosResponse } from "axios";
-import fetchToken from "../../../../../utils/auth/auth";
+import fetchToken from "../../../utils/auth/auth";
 import {
   loginUserActionCreator,
   logoutUserActionCreator,
-} from "../../slices/userSlice/userSlice";
+} from "../slices/userSlice/userSlice";
 
 export const apiURL = process.env.REACT_APP_USERS_API_URL;
 
