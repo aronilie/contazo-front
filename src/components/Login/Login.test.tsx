@@ -5,7 +5,7 @@ import Login from "./Login";
 
 let mockLoginFunction = { login: jest.fn() };
 jest.mock(
-  "../../store/features/users/hooks/UserApi/useUserApi",
+  "../../features/users/hooks/useUserApi",
   () => () => mockLoginFunction
 );
 

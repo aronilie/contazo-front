@@ -7,7 +7,7 @@ import Register from "./Register";
 
 const mockRegisterFunction = { register: jest.fn() };
 jest.mock(
-  "../../store/features/users/hooks/UserApi/useUserApi",
+  "../../features/users/hooks/useUserApi",
   () => () => mockRegisterFunction
 );
 

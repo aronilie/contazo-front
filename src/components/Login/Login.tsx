@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginStyled from "./LoginStyled";
-import useUserApi from "../../store/features/users/hooks/UserApi/useUserApi";
+import useUserApi from "../../features/users/hooks/useUserApi";
 import {
   loginFailStatusInitialState,
   loginFormDataInitialState,

@@ -1,22 +1,22 @@
 import { renderHook } from "@testing-library/react";
-import Wrapper from "../../../../../utils/test-utils/Wrapper";
-import { UserData } from "../../models/User";
+import Wrapper from "../../../utils/test-utils/Wrapper";
+import { UserData } from "../models/User";
 import {
   loginUserActionCreator,
   logoutUserActionCreator,
-} from "../../slices/userSlice/userSlice";
+} from "../slices/userSlice/userSlice";
 import useUserApi from "./useUserApi";
 
 const mockUseDispatch = jest.fn();
 
-jest.mock("../../../../../app/hooks", () => ({
-  ...jest.requireActual("../../../../../app/hooks"),
+jest.mock("../../../app/hooks", () => ({
+  ...jest.requireActual("../../../app/hooks"),
   useAppDispatch: () => mockUseDispatch,
 }));
 
 const mockFetchToken = jest.fn();
 
-jest.mock("../../../../../utils/auth/auth", () => () => {
+jest.mock("../../../utils/auth/auth", () => () => {
   mockFetchToken();
 });
 
