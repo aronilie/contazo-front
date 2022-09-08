@@ -36,16 +36,24 @@ const IndividualContactStyled = styled.div`
     }
 
     &__email {
-      color: ${styles.colors.black};
-      font-weight: ${styles.fontWeights.regular};
-      font-size: ${styles.fontSizes.small};
-      padding: 2em;
+      display: none;
+      @media (min-width: 800px) {
+        display: block;
+        color: ${styles.colors.black};
+        font-weight: ${styles.fontWeights.regular};
+        font-size: ${styles.fontSizes.small};
+        padding: 2em;
+      }
     }
 
     &__phoneNumber {
-      color: ${styles.colors.black};
-      font-weight: ${styles.fontWeights.regular};
-      font-size: ${styles.fontSizes.small};
+      display: none;
+      @media (min-width: 800px) {
+        display: block;
+        color: ${styles.colors.black};
+        font-weight: ${styles.fontWeights.regular};
+        font-size: ${styles.fontSizes.small};
+      }
     }
 
     &__icon {
