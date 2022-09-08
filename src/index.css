@@ -5,7 +5,11 @@
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  padding-bottom: 10vh;
+  padding: 30px 30px 160px 30px;
+
+  @media (min-width: 800px) {
+    padding: 60px 60px 160px 60px;
+  }
 }
 
 input[type="number"]::-webkit-inner-spin-button,

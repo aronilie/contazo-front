@@ -10,24 +10,26 @@ interface ContactProps {
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
   return (
-    <IndividualContactStyled className="contact">
-      <img
-        src={contact.image}
-        alt="contact representation"
-        className="contact__image"
-      />
-      <div className="contact__text">
-        <div>
-          <span className="contact__name">{contact.name}</span>
-          <span className="contact__surname">{contact.surname}</span>
+    <li>
+      <IndividualContactStyled className="contact">
+        <img
+          src={contact.image}
+          alt="contact representation"
+          className="contact__image"
+        />
+        <div className="contact__text">
+          <div className="contact__fullname">
+            <span className="contact__name">{contact.name}</span>
+            <span className="contact__surname">{contact.surname}</span>
+          </div>
+
+          <span className="contact__email">{contact.email}</span>
+          <span className="contact__phoneNumber">{contact.phoneNumber}</span>
         </div>
 
-        <span className="contact__email">{contact.email}</span>
-        <span className="contact__phoneNumber">{contact.phoneNumber}</span>
-      </div>
-
-      <FontAwesomeIcon className="contact__icon" icon={faCircleXmark} />
-    </IndividualContactStyled>
+        <FontAwesomeIcon className="contact__icon" icon={faCircleXmark} />
+      </IndividualContactStyled>
+    </li>
   );
 };
 

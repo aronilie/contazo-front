@@ -7,7 +7,6 @@ const RegisterPage = (): JSX.Element => {
     <>
       <Header />
       <Register />
-      <Navigation />
     </>
   );
 };

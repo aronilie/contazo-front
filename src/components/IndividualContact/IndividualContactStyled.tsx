@@ -5,7 +5,13 @@ const IndividualContactStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1em 0;
+  padding: 2em 0;
+  border-bottom: 3px solid ${styles.colors.grey};
+
+  @media (min-width: 800px) {
+    border-bottom: none;
+    padding: 0;
+  }
 
   .contact {
     &__text {
@@ -22,32 +28,47 @@ const IndividualContactStyled = styled.div`
       margin: 0 1.7em 0 0;
     }
 
+    &__fullname {
+      flex: 2;
+    }
+
     &__name {
       color: ${styles.colors.black};
       font-weight: ${styles.fontWeights.semiBold};
       font-size: ${styles.fontSizes.small};
       padding: 0 0.5em 0 0;
+
+      @media (min-width: 800px) {
+        font-weight: ${styles.fontWeights.regular};
+      }
     }
 
     &__surname {
       color: ${styles.colors.black};
       font-weight: ${styles.fontWeights.semiBold};
       font-size: ${styles.fontSizes.small};
+
+      @media (min-width: 800px) {
+        font-weight: ${styles.fontWeights.regular};
+      }
     }
 
     &__email {
       display: none;
+      flex: 2;
       @media (min-width: 800px) {
         display: block;
         color: ${styles.colors.black};
         font-weight: ${styles.fontWeights.regular};
         font-size: ${styles.fontSizes.small};
-        padding: 2em;
+        padding: 1.5em 2em;
       }
     }
 
     &__phoneNumber {
       display: none;
+      flex: 1.16;
+      text-align: left;
       @media (min-width: 800px) {
         display: block;
         color: ${styles.colors.black};
