@@ -1,9 +1,12 @@
-interface Contact {
+export interface Contact {
   name?: string;
   surname?: string;
   email?: string;
   phoneNumber: string;
   image?: string;
+  owner: string;
 }
 
-export default Contact;
+export interface Contacts {
+  contacts: Contact[];
+}
