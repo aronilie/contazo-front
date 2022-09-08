@@ -1,4 +1,4 @@
-import Contact from "../models/Contact";
+import { Contact } from "../models/Contact";
 import contactsSlice, { getContactsActionCreator } from "./contactsSlice";
 
 describe("Given a usersSlice function", () => {
@@ -10,11 +10,12 @@ describe("Given a usersSlice function", () => {
         surname: "Abramov",
         email: "dan@test.com",
         phoneNumber: "888555222",
+        owner: "631791f8d7342693105b6908",
       };
 
       const users = contactsSlice(
         initialState,
-        getContactsActionCreator(fakeContact)
+        getContactsActionCreator([fakeContact])
       );
 
       expect(users).toStrictEqual([fakeContact]);

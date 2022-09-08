@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Contact from "../models/Contact";
+import { Contact } from "../models/Contact";
 
 const initialState: Contact[] = [];
 
@@ -7,8 +7,8 @@ const contactsSlice = createSlice({
   name: "contacts",
   initialState,
   reducers: {
-    getContacts: (previousContacts, action: PayloadAction<Contact>) => [
-      action.payload,
+    getContacts: (previousContacts, action: PayloadAction<Contact[]>) => [
+      ...action.payload,
     ],
   },
 });
