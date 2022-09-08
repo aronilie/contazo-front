@@ -1,12 +1,11 @@
-import IndividualContact from "../../components/IndividualContact/IndividualContact";
 import Header from "../../components/Header/Header";
-import { provisionallyContact } from "../../utils/components/defaultObjects";
+import ContactsList from "../../components/ContactsList/ContactsList";
 
 const ContactsPage = (): JSX.Element => {
   return (
     <>
       <Header />
-      <IndividualContact contact={provisionallyContact} />
+      <ContactsList />
     </>
   );
 };

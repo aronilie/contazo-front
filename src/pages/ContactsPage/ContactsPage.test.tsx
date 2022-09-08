@@ -6,7 +6,7 @@ import ContactsPage from "./ContactsPage";
 
 describe("Given a ContactsPage component", () => {
   describe("When it is instantiated", () => {
-    test("Then it should render the image of a contact", () => {
+    test("Then it should render the image of the header", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
@@ -16,7 +16,7 @@ describe("Given a ContactsPage component", () => {
       );
 
       const heading = screen.getByRole("img", {
-        name: "contact representation",
+        name: "Contazo logo",
       });
 
       expect(heading).toBeInTheDocument();
