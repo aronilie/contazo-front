@@ -16,6 +16,7 @@ const styles = {
     small: "18px",
     medium: "20px",
     large: "24px",
+    extraLarge: "30px",
     superLarge: "120px",
   },
   fontWeights: {
