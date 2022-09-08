@@ -1,6 +1,6 @@
 import { rest } from "msw";
 
-const apiUrl = process.env.REACT_APP_USERS_API_URL as string;
+const apiUrl = process.env.REACT_APP_API_URL as string;
 
 const handlers = [
   rest.post(`${apiUrl}users/register`, (req, res, ctx) => {
