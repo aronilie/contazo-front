@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  padding: 30px 30px 160px 30px;
+  padding: 20px 15px 160px 15px;
 
   @media (min-width: 800px) {
     padding: 60px 60px 160px 60px;

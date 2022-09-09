@@ -3,12 +3,16 @@ import styles from "../../styles/styles";
 
 const NavigationStyled = styled.nav`
   min-width: 100%;
-  height: 5em;
+  height: 3.7em;
   bottom: 0;
   left: 0;
   right: 0;
   position: fixed;
   background-color: ${styles.colors.grey};
+
+  @media (min-width: 800px) {
+    height: 5em;
+  }
 
   .navigation {
     padding: 0;
