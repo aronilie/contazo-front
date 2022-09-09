@@ -6,7 +6,7 @@ import {
   loginFailStatusInitialState,
   loginFormDataInitialState,
 } from "../../utils/initialStates";
-import LinkContainerStyled from "../../utils/components/LinkContainerStyled";
+import LinkContainerStyled from "../../utils/components-utils/LinkContainerStyled";
 import Button from "../Button/Button";
 
 const Login = (): JSX.Element => {
