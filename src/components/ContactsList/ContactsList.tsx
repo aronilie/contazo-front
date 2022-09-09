@@ -17,7 +17,7 @@ const ContactsList = (): JSX.Element => {
   return (
     <>
       {!thereAreContacts ? (
-        <span>There are no contacts yet</span>
+        <span>You have no contacts yet.</span>
       ) : (
         <ListContainerStyled>
           <div className="list">
