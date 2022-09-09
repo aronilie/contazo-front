@@ -1,5 +1,4 @@
 import Header from "../../components/Header/Header";
-import Navigation from "../../components/Navigation/Navigation";
 import Register from "../../components/Register/Register";
 
 const RegisterPage = (): JSX.Element => {
@@ -7,7 +6,6 @@ const RegisterPage = (): JSX.Element => {
     <>
       <Header />
       <Register />
-      <Navigation />
     </>
   );
 };

@@ -17,10 +17,11 @@ const styles = {
     medium: "20px",
     large: "24px",
     extraLarge: "30px",
-    superLarge: "120px",
+    superLarge: "35px",
+    megaLarge: "120px",
   },
   fontWeights: {
-    bold: "700",
+    bold: "900",
     semiBold: "600",
     regular: "400",
   },
