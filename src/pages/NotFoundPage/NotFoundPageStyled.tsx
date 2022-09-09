@@ -34,6 +34,7 @@ const NotFoundPageStyled = styled.div`
     }
 
     &__link {
+      padding: 2em 0 0 0;
       display: flex;
       justify-content: center;
     }
