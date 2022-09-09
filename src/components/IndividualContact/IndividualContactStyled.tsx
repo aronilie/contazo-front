@@ -5,7 +5,7 @@ const IndividualContactStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2em 0;
+  padding: 0.9em 0;
   border-bottom: 3px solid ${styles.colors.grey};
 
   @media (min-width: 800px) {
@@ -78,7 +78,7 @@ const IndividualContactStyled = styled.div`
     }
 
     &__icon {
-      font-size: ${styles.fontSizes.extraLarge};
+      font-size: ${styles.fontSizes.large};
       padding: 0 1em;
     }
   }

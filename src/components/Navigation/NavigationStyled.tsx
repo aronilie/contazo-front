@@ -3,7 +3,7 @@ import styles from "../../styles/styles";
 
 const NavigationStyled = styled.nav`
   min-width: 100%;
-  height: 8vh;
+  height: 5em;
   bottom: 0;
   left: 0;
   right: 0;
