@@ -1,5 +1,3 @@
-import { defaultContact } from "../components-utils/defaultObjects";
-
 const contacts = [
   {
     name: "Dan",
