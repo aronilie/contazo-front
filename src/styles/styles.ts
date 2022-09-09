@@ -13,6 +13,7 @@ const styles = {
   fontSizes: {
     extraSmaller: "12px",
     smaller: "14px",
+    smally: "16",
     small: "18px",
     medium: "20px",
     large: "24px",

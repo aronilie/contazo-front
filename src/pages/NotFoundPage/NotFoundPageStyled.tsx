@@ -10,16 +10,18 @@ const NotFoundPageStyled = styled.div`
   .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 2em;
 
     &__computer {
-      width: 250px;
-      padding: 5em 0 0 0;
+      width: 150px;
+      padding: 2.5em 0 0 0;
     }
 
     &__title {
       text-align: center;
-      font-size: ${styles.fontSizes.superLarge};
+      font-size: ${styles.fontSizes.megaLarge};
       font-weight: ${styles.fontWeights.bold};
       color: ${styles.colors.main};
       margin: 0;
