@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { getContactsActionCreator } from "../slices/contactsSlice";
-import { Contacts } from "../models/Contact";
+import { Contact, Contacts } from "../models/Contact";
 
 export const apiURL = process.env.REACT_APP_API_URL;
 
@@ -23,6 +23,22 @@ const useContactsApi = () => {
     dispatch(getContactsActionCreator(contacts));
   }, [dispatch, token]);
 
-  return { contacts, getContacts };
+  const getContactByPhoneNumber = useCallback(
+    async (phoneNumber: string) => {
+      const { data: contact }: AxiosResponse<Contact> = await axios.get(
+        `${apiURL}contacts/${phoneNumber}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      return contact;
+    },
+    [token]
+  );
+
+  return { contacts, getContacts, getContactByPhoneNumber };
 };
 export default useContactsApi;
