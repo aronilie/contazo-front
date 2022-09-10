@@ -3,6 +3,7 @@ import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import { Contact } from "../../features/contacts/models/Contact";
 import IndividualContactStyled from "./IndividualContactStyled";
 import { defaultContactImage } from "../../utils/components-utils/defaultObjects";
+import { useNavigate } from "react-router-dom";
 
 interface ContactProps {
   contact: Contact;
@@ -11,13 +12,18 @@ interface ContactProps {
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
   let contactImage = contact.image;
+  const navigate = useNavigate();
 
   if (!contact.image) {
     contactImage = defaultContactImage;
   }
 
+  const moveToDetails = () => {
+    navigate(`/contact/${contact.phoneNumber!}`);
+  };
+
   return (
-    <li>
+    <li onClick={moveToDetails}>
       <IndividualContactStyled className="contact">
         <img
           src={contactImage}
