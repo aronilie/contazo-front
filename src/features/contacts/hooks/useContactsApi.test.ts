@@ -21,9 +21,16 @@ const fakeContacts: Contact[] = [
   },
 ];
 
-describe("Given a useHandApi hook", () => {
-  describe("When loadHands function is called", () => {
-    test("The it should call the mockUseDispatch with an array with fakeHand", async () => {
+const fakeContact: Contact = {
+  name: "Dan",
+  surname: "Abramov",
+  email: "dan@test.com",
+  phoneNumber: "888555222",
+  owner: "631791f8d7342693105b6908",
+};
+describe("Given a useContactsApi hook", () => {
+  describe("When getContacts function is called", () => {
+    test("The it should call the mockUseDispatch with an array fakeContacts", async () => {
       const {
         result: {
           current: { getContacts },
@@ -41,6 +48,23 @@ describe("Given a useHandApi hook", () => {
       await getContacts();
 
       expect(mockUseDispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
+  describe("When getContactByPhoneNumber function is called with a phoneNumber '888555222'", () => {
+    test("Then it should return a contact with a phoneNumber", async () => {
+      const phoneNumber = "888555222";
+      const {
+        result: {
+          current: { getContactByPhoneNumber },
+        },
+      } = renderHook(useContactsApi, { wrapper: Wrapper });
+      const response = { data: fakeContact };
+
+      axios.get = jest.fn().mockResolvedValue(response);
+      const expectedContact = await getContactByPhoneNumber(phoneNumber);
+
+      expect(expectedContact).toStrictEqual(fakeContact);
     });
   });
 });
