@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useUserApi from "../../features/users/hooks/useUserApi";
 import LinkContainerStyled from "../../utils/components-utils/LinkContainerStyled";
 import Button from "../Button/Button";
@@ -31,6 +31,7 @@ const Register = (): JSX.Element => {
   };
 
   const { register } = useUserApi();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState(formDataInitialState);
   const [fieldStatus, setFieldStatus] = useState(fieldStatusInitialState);
@@ -72,6 +73,9 @@ const Register = (): JSX.Element => {
 
       setSuccessStatus("form-check__success--active");
       setFormData(formDataInitialState);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     }
   };
 

@@ -19,7 +19,7 @@ const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
   }
 
   const moveToDetails = () => {
-    navigate(`/contact/${contact.phoneNumber!}`);
+    navigate(`/contact/${contact.phoneNumber}`);
   };
 
   return (

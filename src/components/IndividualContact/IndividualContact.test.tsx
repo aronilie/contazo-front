@@ -2,7 +2,7 @@ import IndividualContact from "./IndividualContact";
 import { render, screen } from "@testing-library/react";
 import * as router from "react-router";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const contact = {
   name: "Dan",
@@ -21,9 +21,9 @@ describe("Given a IndividualContact component", () => {
   describe("When it is instantiated with a contact", () => {
     test("Then it should render the 'email' and the 'phoneNumber' of the contact", async () => {
       render(
-        <MemoryRouter>
+        <BrowserRouter>
           <IndividualContact contact={contact} />
-        </MemoryRouter>
+        </BrowserRouter>
       );
 
       const phoneNumber = screen.getByText("888555222");
@@ -36,9 +36,9 @@ describe("Given a IndividualContact component", () => {
     describe("And the user clicks in one contact", () => {
       test("Then it should navigate to the contact details page", async () => {
         render(
-          <MemoryRouter>
+          <BrowserRouter>
             <IndividualContact contact={contact} />
-          </MemoryRouter>
+          </BrowserRouter>
         );
 
         const contactReceived = screen.getByRole("listitem");
