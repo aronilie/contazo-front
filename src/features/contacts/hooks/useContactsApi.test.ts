@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { render, renderHook } from "@testing-library/react";
 import axios from "axios";
 import Wrapper from "../../../utils/test-utils/Wrapper";
 import { Contact } from "../models/Contact";
@@ -17,7 +17,7 @@ const fakeContacts: Contact[] = [
     surname: "Abramov",
     email: "dan@test.com",
     phoneNumber: "888555222",
-    owner: "631791f8d7342693105b6908",
+    owner: "6319c275b774d4a8400d6344",
   },
 ];
 
@@ -26,8 +26,9 @@ const fakeContact: Contact = {
   surname: "Abramov",
   email: "dan@test.com",
   phoneNumber: "888555222",
-  owner: "631791f8d7342693105b6908",
+  owner: "6319c275b774d4a8400d6344",
 };
+
 describe("Given a useContactsApi hook", () => {
   describe("When getContacts function is called", () => {
     test("The it should call the mockUseDispatch with an array fakeContacts", async () => {
@@ -65,6 +66,22 @@ describe("Given a useContactsApi hook", () => {
       const expectedContact = await getContactByPhoneNumber(phoneNumber);
 
       expect(expectedContact).toStrictEqual(fakeContact);
+    });
+  });
+
+  describe("When createContact function is called", () => {
+    test("Then it should return the response message 'Contact successfully created'", async () => {
+      const publicMessage = "Contact successfully created";
+
+      const {
+        result: {
+          current: { createContact },
+        },
+      } = renderHook(useContactsApi, { wrapper: Wrapper });
+
+      const contactCreated = await createContact(fakeContact);
+
+      expect(contactCreated.data).toBe(publicMessage);
     });
   });
 });

@@ -24,6 +24,10 @@ const handlers = [
       })
     );
   }),
+
+  rest.post(`${apiUrl}create`, async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json("Contact successfully created"));
+  }),
 ];
 
 export default handlers;

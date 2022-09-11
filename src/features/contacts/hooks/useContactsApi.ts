@@ -39,6 +39,19 @@ const useContactsApi = () => {
     [token]
   );
 
-  return { contacts, getContacts, getContactByPhoneNumber };
+  const createContact = async (contact: Contact) => {
+    const response: AxiosResponse<string> = await axios.post(
+      `${apiURL}create`,
+      contact,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  };
+
+  return { contacts, getContacts, getContactByPhoneNumber, createContact };
 };
 export default useContactsApi;
