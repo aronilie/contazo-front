@@ -51,9 +51,7 @@ const CreateContact = (): JSX.Element => {
 
         setSuccessStatus("form-check__success--active");
         setFormData(formDataInitialState);
-        setTimeout(() => {
-          navigate("/home");
-        }, 2500);
+        navigate("/home");
       } catch (error) {}
     }
   };

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
@@ -20,19 +20,6 @@ jest.mock("../../app/hooks", () => ({
   ...jest.requireActual("../../app/hooks"),
   useAppDispatch: () => mockUseDispatch,
 }));
-
-const mockSelector = jest.fn();
-
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockSelector,
-}));
-
-// const mockSelector = jest.spyOn(reactRedux, "useSelector");
-
-beforeEach(() => {
-  mockSelector.mockClear();
-});
 
 const navigate = jest.fn();
 beforeEach(() => {
@@ -73,8 +60,6 @@ describe("Given a Register component", () => {
         </MemoryRouter>
       );
 
-      jest.advanceTimersByTime(5000);
-
       const form = {
         name: screen.getByLabelText("Name") as HTMLInputElement,
         surname: screen.getByLabelText("Surname") as HTMLInputElement,
@@ -87,22 +72,14 @@ describe("Given a Register component", () => {
       await userEvent.type(form.phoneNumber, newNumber.toString());
 
       const submit = screen.getByRole("button", { name: "Create contact" });
-      await fireEvent.click(submit);
+      await userEvent.click(submit);
 
-      setTimeout(() => {
-        expect(navigate).toHaveBeenCalledTimes(1);
-      }, 4000);
+      expect(navigate).toHaveBeenCalledTimes(1);
     });
 
     test("Then it should call the mockCreate function", async () => {
       const newText = "test@prove";
       const newNumber = 888555222;
-
-      mockSelector.mockReturnValueOnce({
-        phoneNumber: "",
-        token: "",
-        id: "631791f8d7342693105b6908",
-      });
 
       render(
         <MemoryRouter>
@@ -129,9 +106,8 @@ describe("Given a Register component", () => {
       expect(mockCreateFunction.createContact).toHaveBeenCalled();
     });
 
-    describe("And the inputs are password: 'registerTest' and the number: '674218987'", () => {
-      test("Then it should render a phoneNumber, password and repeatPassword inputs with the text", async () => {
-        const newText = "registerTest";
+    describe("And the input is the number: '674218987'", () => {
+      test("Then it should render a phoneNumber with the text", async () => {
         const newNumber = 674218987;
         render(
           <MemoryRouter initialEntries={[route]}>
