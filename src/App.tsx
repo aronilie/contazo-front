@@ -10,6 +10,8 @@ import DetailContactPage from "./pages/DetailContactPage/DetailContactPage";
 import CreateContact from "./components/CreateContact/CreateContact";
 import Navigation from "./components/Navigation/Navigation";
 import Header from "./components/Header/Header";
+import ReverseRouteProtector from "./components/RouteProtector/ReverseRouteProtector";
+import RouteProtector from "./components/RouteProtector/RouteProtector";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -29,8 +31,22 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/home" element={<Navigate to="/contacts" />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
+        <Route
+          path="/login"
+          element={
+            <ReverseRouteProtector>
+              <LoginPage />
+            </ReverseRouteProtector>
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <RouteProtector>
+              <ContactsPage />
+            </RouteProtector>
+          }
+        />
         <Route path="/contact/:id" element={<DetailContactPage />} />
         <Route path="/create/" element={<CreateContact />} />
         <Route path="*" element={<NotFoundPage />} />
