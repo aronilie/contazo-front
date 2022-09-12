@@ -1,4 +1,5 @@
 import { Contact } from "../../features/contacts/models/Contact";
+import { defaultContactImage } from "../../utils/components-utils/defaultObjects";
 import {
   mailIcon,
   mobileIcon,
@@ -13,12 +14,18 @@ interface DetailContactProps {
 }
 
 const DetailContact = ({ contact }: DetailContactProps): JSX.Element => {
+  let contactImage = contact.image;
+
+  if (!contact.image) {
+    contactImage = defaultContactImage;
+  }
+
   return (
     <DetailContactStyled>
       <div className="container">
         <div className="header">
           <img
-            src={contact.image}
+            src={contactImage}
             alt="Contact presentation"
             className="header__image"
           />

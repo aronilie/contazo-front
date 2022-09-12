@@ -10,6 +10,7 @@ describe("Given a DetailContact component", () => {
         email: "dan@test.com",
         phoneNumber: "888555222",
         owner: "owner",
+        image: "image",
       };
       const expectedText = contact.name;
 
@@ -17,6 +18,26 @@ describe("Given a DetailContact component", () => {
       const receivedText = screen.getByText(expectedText);
 
       expect(receivedText).toBeInTheDocument();
+    });
+
+    describe("And the contact passed for props don't have image", () => {
+      test("Then it should render the default image", () => {
+        const contact = {
+          name: "Dan",
+          surname: "Abramov",
+          email: "dan@test.com",
+          phoneNumber: "888555222",
+          owner: "owner",
+          image: undefined,
+        };
+
+        render(<DetailContact contact={contact} />);
+        const receivedImage = screen.getByRole("img", {
+          name: "Contact presentation",
+        });
+
+        expect(receivedImage).toBeInTheDocument();
+      });
     });
   });
 });
