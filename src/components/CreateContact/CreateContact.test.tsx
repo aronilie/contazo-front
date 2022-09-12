@@ -254,38 +254,3 @@ describe("Given a Register component", () => {
     });
   });
 });
-
-test("Then it should call the navigate function", async () => {
-  const newText = "test@prove";
-  const newNumber = 888555222;
-
-  // jest.useFakeTimers();
-
-  render(
-    <MemoryRouter>
-      <Provider store={store}>
-        <CreateContact />
-      </Provider>
-    </MemoryRouter>
-  );
-
-  jest.advanceTimersByTime(5000);
-
-  const form = {
-    name: screen.getByLabelText("Name") as HTMLInputElement,
-    surname: screen.getByLabelText("Surname") as HTMLInputElement,
-    email: screen.getByLabelText("Email address") as HTMLInputElement,
-    phoneNumber: screen.getByLabelText("Phone number") as HTMLInputElement,
-  };
-  await userEvent.type(form.name, newText);
-  await userEvent.type(form.surname, newText);
-  await userEvent.type(form.email, newText);
-  await userEvent.type(form.phoneNumber, newNumber.toString());
-
-  const submit = screen.getByRole("button", { name: "Create contact" });
-  await fireEvent.click(submit);
-
-  setTimeout(() => {
-    expect(navigate).toHaveBeenCalledTimes(1);
-  }, 4000);
-});
