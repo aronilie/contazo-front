@@ -22,6 +22,7 @@ jest.mock("../../app/hooks", () => ({
 }));
 
 const navigate = jest.fn();
+
 beforeEach(() => {
   jest.spyOn(router, "useNavigate").mockImplementation(() => navigate);
 });
