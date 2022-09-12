@@ -39,6 +39,27 @@ export const ContactsListStyled = styled.ul`
       }
     }
   }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .button-create {
+    min-width: 150px;
+    min-height: 2.5em;
+
+    @media (min-width: 800px) {
+      min-height: 2.8em;
+      min-width: 200px;
+    }
+  }
+
+  .link-create {
+    @media (min-width: 800px) {
+      padding: 0 24px 0 0;
+    }
+  }
 `;
 
 export const ListContainerStyled = styled.div`

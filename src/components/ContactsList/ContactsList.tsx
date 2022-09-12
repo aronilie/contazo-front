@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import useContactsApi from "../../features/contacts/hooks/useContactsApi";
+import Button from "../Button/Button";
 import IndividualContact from "../IndividualContact/IndividualContact";
 import { ContactsListStyled, ListContainerStyled } from "./ContactsListStyled";
 
@@ -22,7 +24,20 @@ const ContactsList = (): JSX.Element => {
         <ListContainerStyled>
           <div className="list">
             <ContactsListStyled>
-              <h1 className="title">Contacts</h1>
+              <div className="header">
+                <h1 className="title">Contacts</h1>
+                <div className="link-create">
+                  <Link to="/create">
+                    <Button
+                      className="button-create"
+                      disabled={false}
+                      text="Create contact"
+                      type="submit"
+                    />
+                  </Link>
+                </div>
+              </div>
+
               <div className="index">
                 <span className="index__name">Name</span>
                 <span className="index__email">Email</span>
