@@ -22,7 +22,7 @@ jest.mock(
 
 describe("Given a DetailContactPage component", () => {
   describe("When it is instantiated", () => {
-    test("Then it should render the information of the contact passed for props", () => {
+    test("Then it should render the name of the contact passed for props", async () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -31,9 +31,15 @@ describe("Given a DetailContactPage component", () => {
         </BrowserRouter>
       );
 
-      const expectedText = screen.getByText("Contacts");
+      let expectedText: HTMLElement;
 
-      expect(expectedText).toBeInTheDocument();
+      setTimeout(() => {
+        expectedText = screen.getByText(contact.name);
+      }, 1000);
+
+      setTimeout(() => {
+        expect(expectedText).toBeInTheDocument();
+      }, 2000);
     });
   });
 });

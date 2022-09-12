@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailContact from "../../components/DetailContact/DetailContact";
-import Header from "../../components/Header/Header";
-import Navigation from "../../components/Navigation/Navigation";
 import useContactsApi from "../../features/contacts/hooks/useContactsApi";
 import { Contact } from "../../features/contacts/models/Contact";
 
@@ -30,9 +28,7 @@ const DetailContactPage = (): JSX.Element => {
 
   return (
     <>
-      <Header />
       <DetailContact contact={contact} />
-      <Navigation />
     </>
   );
 };
