@@ -10,9 +10,14 @@ const contactsSlice = createSlice({
     getContacts: (previousContacts, action: PayloadAction<Contact[]>) => [
       ...action.payload,
     ],
+    deleteContact: (previousState, action: PayloadAction<string>) =>
+      previousState.filter((contact) => contact.phoneNumber !== action.payload),
   },
 });
 
-export const { getContacts: getContactsActionCreator } = contactsSlice.actions;
+export const {
+  getContacts: getContactsActionCreator,
+  deleteContact: deleteContactActionCreator,
+} = contactsSlice.actions;
 
 export default contactsSlice.reducer;
