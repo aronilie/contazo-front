@@ -10,6 +10,7 @@ describe("Given a DetailContact component", () => {
         email: "dan@test.com",
         phoneNumber: "888555222",
         owner: "owner",
+        image: undefined,
       };
       const expectedText = contact.name;
 
