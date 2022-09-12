@@ -1,14 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import Header from "../../components/Header/Header";
 import NotFoundPageStyled from "./NotFoundPageStyled";
 import LinkContainerStyled from "../../utils/components-utils/LinkContainerStyled";
 
 const NotFoundPage = (): JSX.Element => {
   return (
     <>
-      <Header />
       <NotFoundPageStyled className="main-container">
         <div className="container">
           <img
