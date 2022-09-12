@@ -8,6 +8,8 @@ import { loginUserActionCreator } from "./features/users/slices/userSlice/userSl
 import fetchToken from "./utils/auth/auth";
 import DetailContactPage from "./pages/DetailContactPage/DetailContactPage";
 import CreateContact from "./components/CreateContact/CreateContact";
+import Navigation from "./components/Navigation/Navigation";
+import Header from "./components/Header/Header";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -20,16 +22,20 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
-      <Route path="/home" element={<Navigate to="/contacts" />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/contacts" element={<ContactsPage />} />
-      <Route path="/contact/:id" element={<DetailContactPage />} />
-      <Route path="/create/" element={<CreateContact />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <>
+      <Header />
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/home" element={<Navigate to="/contacts" />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+        <Route path="/contact/:id" element={<DetailContactPage />} />
+        <Route path="/create/" element={<CreateContact />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </>
   );
 }
 
