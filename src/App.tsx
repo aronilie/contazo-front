@@ -7,6 +7,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { loginUserActionCreator } from "./features/users/slices/userSlice/userSlice";
 import fetchToken from "./utils/auth/auth";
 import DetailContactPage from "./pages/DetailContactPage/DetailContactPage";
+import CreateContact from "./components/CreateContact/CreateContact";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/contacts" element={<ContactsPage />} />
       <Route path="/contact/:id" element={<DetailContactPage />} />
+      <Route path="/create/" element={<CreateContact />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

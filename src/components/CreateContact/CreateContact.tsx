@@ -95,7 +95,7 @@ const CreateContact = (): JSX.Element => {
             </div>
             <div className="form__group">
               <div className="form__label-container">
-                <label htmlFor="name" className="form__label">
+                <label htmlFor="surname" className="form__label">
                   Surname
                 </label>
               </div>
@@ -112,7 +112,7 @@ const CreateContact = (): JSX.Element => {
           <div className="form-half">
             <div className="form__group">
               <div className="form__label-container">
-                <label htmlFor="name" className="form__label">
+                <label htmlFor="email" className="form__label">
                   Email address
                 </label>
               </div>
@@ -127,7 +127,7 @@ const CreateContact = (): JSX.Element => {
             </div>
             <div className="form__group">
               <div className="form__label-container">
-                <label htmlFor="name" className="form__label">
+                <label htmlFor="phoneNumber" className="form__label">
                   Phone number
                 </label>
               </div>
