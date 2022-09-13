@@ -31,3 +31,12 @@ export const loginFormDataInitialState = {
   phoneNumber: "",
   password: "",
 };
+
+export interface ContactDataInitialState {
+  name: string;
+  surname: string;
+  email: string;
+  phoneNumber: string;
+  image: string | File;
+  owner: string;
+}

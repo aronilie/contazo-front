@@ -2,18 +2,22 @@ import React, { SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import useContactsApi from "../../features/contacts/hooks/useContactsApi";
-import { fieldStatusInitialState } from "../../utils/initialStates";
+import {
+  ContactDataInitialState,
+  fieldStatusInitialState,
+} from "../../utils/initialStates";
 import Button from "../Button/Button";
 import CreateContactStyled from "./CreateContactStyled";
 
 const CreateContact = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);
 
-  const formDataInitialState = {
+  const contactDataInitialState: ContactDataInitialState = {
     name: "",
     surname: "",
     email: "",
     phoneNumber: "",
+    image: "",
     owner: user.id,
   };
 
@@ -27,38 +31,20 @@ const CreateContact = (): JSX.Element => {
   const navigate = useNavigate();
   const { createContact } = useContactsApi();
 
-  const [formData, setFormData] = useState(formDataInitialState);
+  const [contactData, setContactData] = useState(contactDataInitialState);
   const [fieldStatus, setFieldStatus] = useState(fieldStatusInitialState);
   const [failStatus, setFailStatus] = useState(failStatusInitialState);
+
   const [successStatus, setSuccessStatus] = useState("");
+  const formData = new FormData();
 
-  const handleSubmit = async (event: SyntheticEvent) => {
-    event.preventDefault();
-    setFailStatus(failStatusInitialState);
-
-    if (formData.email.search("@") < 1) {
-      setFieldStatus({ ...fieldStatus, email: "form__input--wrong" });
-      setFailStatus({ ...failStatus, email: "form-email__error--active" });
-    } else if (formData.phoneNumber.length < 9) {
-      setFieldStatus({ ...fieldStatus, phoneNumber: "form__input--wrong" });
-      setFailStatus({
-        ...failStatus,
-        phoneNumber: "form-phone__error--active",
-      });
-    } else {
-      try {
-        await createContact(formData);
-
-        setSuccessStatus("form-check__success--active");
-        setFormData(formDataInitialState);
-        navigate("/home");
-      } catch (error) {}
-    }
-  };
-
-  const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeData = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setFieldStatus(fieldStatusInitialState);
-    setFormData({ ...formData, [event.target.id]: event.target.value });
+    setContactData({ ...contactData, [event.target.id]: event.target.value });
 
     if (hasEmptyFields) {
       setFailStatus({ ...failStatus, button: "form-button__error--active" });
@@ -69,7 +55,42 @@ const CreateContact = (): JSX.Element => {
     }
   };
 
-  const hasEmptyFields = formData.phoneNumber.length < 1;
+  const onChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files![0];
+    formData.append("file", file);
+  };
+
+  const handleSubmit = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    setFailStatus(failStatusInitialState);
+
+    if (contactData.email.search("@") < 1) {
+      setFieldStatus({ ...fieldStatus, email: "form__input--wrong" });
+      setFailStatus({ ...failStatus, email: "form-email__error--active" });
+    } else if (contactData.phoneNumber.length < 9) {
+      setFieldStatus({ ...fieldStatus, phoneNumber: "form__input--wrong" });
+      setFailStatus({
+        ...failStatus,
+        phoneNumber: "form-phone__error--active",
+      });
+    } else {
+      formData.append("name", contactData.name);
+      formData.append("surname", contactData.surname);
+      formData.append("email", contactData.email);
+      formData.append("phoneNumber", contactData.phoneNumber);
+      formData.append("owner", contactData.owner);
+      formData.append("file", contactData.image as File);
+      try {
+        await createContact(formData);
+
+        setSuccessStatus("form-check__success--active");
+        setContactData(contactDataInitialState);
+        navigate("/home");
+      } catch (error) {}
+    }
+  };
+
+  const hasEmptyFields = contactData.phoneNumber.length < 1;
   return (
     <CreateContactStyled>
       <div className="container">
@@ -87,7 +108,7 @@ const CreateContact = (): JSX.Element => {
                 className="form__input"
                 id="name"
                 autoComplete="off"
-                value={formData.name}
+                value={contactData.name}
                 onChange={onChangeData}
               />
             </div>
@@ -102,7 +123,7 @@ const CreateContact = (): JSX.Element => {
                 className="form__input"
                 id="surname"
                 autoComplete="off"
-                value={formData.surname}
+                value={contactData.surname}
                 onChange={onChangeData}
               />
             </div>
@@ -119,7 +140,7 @@ const CreateContact = (): JSX.Element => {
                 className={`form__input ${fieldStatus.email}`}
                 id="email"
                 autoComplete="off"
-                value={formData.email}
+                value={contactData.email}
                 onChange={onChangeData}
               />
             </div>
@@ -134,10 +155,16 @@ const CreateContact = (): JSX.Element => {
                 className={`form__input ${fieldStatus.phoneNumber}`}
                 id="phoneNumber"
                 autoComplete="off"
-                value={formData.phoneNumber.toString()}
+                value={contactData.phoneNumber.toString()}
                 onChange={onChangeData}
               />
             </div>
+            <input
+              type="file"
+              id="image"
+              onChange={onChangeFile}
+              data-testid="upload-file"
+            />
           </div>
 
           {fieldStatus.email === "form__input--wrong" && (
