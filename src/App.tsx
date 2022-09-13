@@ -30,7 +30,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/home" element={<Navigate to="/contacts" />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/register"
+          element={
+            <ReverseRouteProtector>
+              <RegisterPage />
+            </ReverseRouteProtector>
+          }
+        />
         <Route
           path="/login"
           element={
@@ -47,8 +54,22 @@ function App() {
             </RouteProtector>
           }
         />
-        <Route path="/contact/:id" element={<DetailContactPage />} />
-        <Route path="/create/" element={<CreateContact />} />
+        <Route
+          path="/contact/:id"
+          element={
+            <RouteProtector>
+              <DetailContactPage />
+            </RouteProtector>
+          }
+        />
+        <Route
+          path="/create/"
+          element={
+            <RouteProtector>
+              <CreateContact />
+            </RouteProtector>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
