@@ -16,9 +16,14 @@ const IndividualContactStyled = styled.div`
   .contact {
     &__text {
       width: 100%;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      @media (min-width: 800px) {
+        height: 100%;
+      }
     }
     &__image {
       width: 40px;

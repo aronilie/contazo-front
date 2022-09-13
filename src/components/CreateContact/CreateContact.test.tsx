@@ -95,11 +95,13 @@ describe("Given a Register component", () => {
         surname: screen.getByLabelText("Surname") as HTMLInputElement,
         email: screen.getByLabelText("Email address") as HTMLInputElement,
         phoneNumber: screen.getByLabelText("Phone number") as HTMLInputElement,
+        image: screen.getByTestId("upload-file"),
       };
       await userEvent.type(form.name, newText);
       await userEvent.type(form.surname, newText);
       await userEvent.type(form.email, newText);
       await userEvent.type(form.phoneNumber, newNumber.toString());
+      await userEvent.upload(form.image, new File([""], ""));
 
       const submit = screen.getByRole("button", { name: "Create contact" });
       await userEvent.click(submit);

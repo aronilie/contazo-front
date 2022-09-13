@@ -3,7 +3,7 @@ export interface Contact {
   surname?: string;
   email?: string;
   phoneNumber: string;
-  image?: string;
+  backupImage?: string;
   owner: string;
 }
 
