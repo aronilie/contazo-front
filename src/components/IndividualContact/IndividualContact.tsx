@@ -12,12 +12,12 @@ interface ContactProps {
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
-  let contactImage = contact.image;
+  let contactImage = contact.backupImage;
   const navigate = useNavigate();
 
   const { deleteContact } = useContactsApi();
 
-  if (!contact.image) {
+  if (!contact.backupImage) {
     contactImage = defaultContactImage;
   }
 
@@ -51,6 +51,7 @@ const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
           className="contact__icon"
           icon={faCircleXmark}
           onClick={deleteUserContact}
+          data-testid="icon"
         />
       </IndividualContactStyled>
     </li>
