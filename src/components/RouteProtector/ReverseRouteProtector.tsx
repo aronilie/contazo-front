@@ -15,7 +15,7 @@ const ReverseRouteProtector = ({
 
   useEffect(() => {
     if (logged) {
-      navigate("/cards");
+      navigate("/home");
     }
   }, [logged, navigate]);
 

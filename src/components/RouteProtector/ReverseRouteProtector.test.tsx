@@ -11,7 +11,7 @@ jest.mock("react-router-dom", () => ({
 
 describe("Given a ReverseRouterProtector component", () => {
   describe("When it's intantiated and there is a user logged", () => {
-    test("Then it should call navigate to cards", () => {
+    test("Then it should call navigate to '/home'", () => {
       const headingText = "Test";
       const userMockSlice = createSlice({
         name: "user",
@@ -30,7 +30,7 @@ describe("Given a ReverseRouterProtector component", () => {
         </Provider>
       );
 
-      expect(mockUseNavigate).toHaveBeenCalledWith("/cards");
+      expect(mockUseNavigate).toHaveBeenCalledWith("/home");
     });
 
     test("Then it should render its children when the user is not logged", () => {
