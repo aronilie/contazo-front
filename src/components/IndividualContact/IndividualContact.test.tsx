@@ -3,6 +3,8 @@ import { render, screen } from "@testing-library/react";
 import * as router from "react-router";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "../../app/store";
 
 const contact = {
   name: "Dan",
@@ -22,7 +24,9 @@ describe("Given a IndividualContact component", () => {
     test("Then it should render the 'email' and the 'phoneNumber' of the contact", async () => {
       render(
         <BrowserRouter>
-          <IndividualContact contact={contact} />
+          <Provider store={store}>
+            <IndividualContact contact={contact} />
+          </Provider>
         </BrowserRouter>
       );
 
@@ -37,11 +41,13 @@ describe("Given a IndividualContact component", () => {
       test("Then it should navigate to the contact details page", async () => {
         render(
           <BrowserRouter>
-            <IndividualContact contact={contact} />
+            <Provider store={store}>
+              <IndividualContact contact={contact} />
+            </Provider>
           </BrowserRouter>
         );
 
-        const contactReceived = screen.getByRole("listitem");
+        const contactReceived = screen.getByText("Dan");
         await userEvent.click(contactReceived);
 
         expect(navigate).toHaveBeenCalledTimes(1);

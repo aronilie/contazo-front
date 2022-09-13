@@ -4,6 +4,7 @@ import { Contact } from "../../features/contacts/models/Contact";
 import IndividualContactStyled from "./IndividualContactStyled";
 import { defaultContactImage } from "../../utils/components-utils/defaultObjects";
 import { useNavigate } from "react-router-dom";
+import useContactsApi from "../../features/contacts/hooks/useContactsApi";
 
 interface ContactProps {
   contact: Contact;
@@ -14,6 +15,8 @@ const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
   let contactImage = contact.image;
   const navigate = useNavigate();
 
+  const { deleteContact } = useContactsApi();
+
   if (!contact.image) {
     contactImage = defaultContactImage;
   }
@@ -22,15 +25,19 @@ const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
     navigate(`/contact/${contact.phoneNumber}`);
   };
 
+  const deleteUserContact = () => {
+    deleteContact(contact.phoneNumber);
+  };
+
   return (
-    <li onClick={moveToDetails}>
+    <li>
       <IndividualContactStyled className="contact">
         <img
           src={contactImage}
           alt="contact representation"
           className="contact__image"
         />
-        <div className="contact__text">
+        <div className="contact__text" onClick={moveToDetails}>
           <div className="contact__fullname">
             <span className="contact__name">{contact.name}</span>
             <span className="contact__surname">{contact.surname}</span>
@@ -40,7 +47,11 @@ const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
           <span className="contact__phoneNumber">{contact.phoneNumber}</span>
         </div>
 
-        <FontAwesomeIcon className="contact__icon" icon={faCircleXmark} />
+        <FontAwesomeIcon
+          className="contact__icon"
+          icon={faCircleXmark}
+          onClick={deleteUserContact}
+        />
       </IndividualContactStyled>
     </li>
   );
