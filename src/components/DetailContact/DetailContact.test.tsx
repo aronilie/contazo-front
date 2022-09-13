@@ -1,5 +1,15 @@
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { store } from "../../app/store";
 import DetailContact from "./DetailContact";
+import userEvent from "@testing-library/user-event";
+
+const mockDeleteFunction = { deleteContact: jest.fn() };
+jest.mock(
+  "../../features/contacts/hooks/useContactsApi",
+  () => () => mockDeleteFunction
+);
 
 describe("Given a DetailContact component", () => {
   describe("When it is instantiated with a contact", () => {
@@ -14,7 +24,13 @@ describe("Given a DetailContact component", () => {
       };
       const expectedText = contact.name;
 
-      render(<DetailContact contact={contact} />);
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <DetailContact contact={contact} />
+          </Provider>
+        </BrowserRouter>
+      );
       const receivedText = screen.getByText(expectedText);
 
       expect(receivedText).toBeInTheDocument();
@@ -31,12 +47,46 @@ describe("Given a DetailContact component", () => {
           image: undefined,
         };
 
-        render(<DetailContact contact={contact} />);
+        render(
+          <BrowserRouter>
+            <Provider store={store}>
+              <DetailContact contact={contact} />
+            </Provider>
+          </BrowserRouter>
+        );
         const receivedImage = screen.getByRole("img", {
           name: "Contact presentation",
         });
 
         expect(receivedImage).toBeInTheDocument();
+      });
+    });
+
+    describe("And the user clicks on delete contact button", () => {
+      test("Then it should call the deleteContact method", async () => {
+        const contact = {
+          name: "Dan",
+          surname: "Abramov",
+          email: "dan@test.com",
+          phoneNumber: "888555222",
+          owner: "owner",
+          image: undefined,
+        };
+
+        render(
+          <BrowserRouter>
+            <Provider store={store}>
+              <DetailContact contact={contact} />
+            </Provider>
+          </BrowserRouter>
+        );
+        const deleteButton = screen.getByRole("button", {
+          name: /delete contact/i,
+        });
+
+        await userEvent.click(deleteButton);
+
+        expect(mockDeleteFunction.deleteContact).toBeCalled();
       });
     });
   });

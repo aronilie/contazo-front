@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import useContactsApi from "../../features/contacts/hooks/useContactsApi";
 import { Contact } from "../../features/contacts/models/Contact";
 import { defaultContactImage } from "../../utils/components-utils/defaultObjects";
 import {
@@ -14,11 +16,18 @@ interface DetailContactProps {
 }
 
 const DetailContact = ({ contact }: DetailContactProps): JSX.Element => {
-  let contactImage = contact.image;
+  const { deleteContact } = useContactsApi();
+  const navigate = useNavigate();
 
-  if (!contact.image) {
+  let contactImage = contact.backupImage;
+
+  if (!contact.backupImage) {
     contactImage = defaultContactImage;
   }
+
+  const deleteUserContact = () => {
+    deleteContact(contact.phoneNumber);
+  };
 
   return (
     <DetailContactStyled>
@@ -109,12 +118,16 @@ const DetailContact = ({ contact }: DetailContactProps): JSX.Element => {
             />
           </div>
 
-          <Button
-            className="buttons__bad"
-            text="Delete contact"
-            type="submit"
-            disabled={false}
-          />
+          <div onClick={deleteUserContact}>
+            <div onClick={() => navigate("/contacts")}>
+              <Button
+                className="buttons__bad"
+                text="Delete contact"
+                type="submit"
+                disabled={false}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </DetailContactStyled>
