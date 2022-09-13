@@ -159,11 +159,24 @@ const CreateContact = (): JSX.Element => {
                 onChange={onChangeData}
               />
             </div>
+          </div>
+          <div className="form-third">
+            <span className="file-text">Profile picture</span>
+            <div className="file-container">
+              <label
+                htmlFor="image"
+                data-testid="upload-file"
+                className="file-image"
+              >
+                Upload picture
+              </label>
+            </div>
+
             <input
               type="file"
               id="image"
               onChange={onChangeFile}
-              data-testid="upload-file"
+              className="file-upload"
             />
           </div>
 
