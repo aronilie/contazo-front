@@ -1,7 +1,8 @@
-import { render, renderHook } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 import axios from "axios";
 import Wrapper from "../../../utils/test-utils/Wrapper";
 import { Contact } from "../models/Contact";
+import { deleteContactActionCreator } from "../slices/contactsSlice";
 import useContactsApi from "./useContactsApi";
 
 const mockUseDispatch = jest.fn();
@@ -82,6 +83,24 @@ describe("Given a useContactsApi hook", () => {
       const contactCreated = await createContact(fakeContact);
 
       expect(contactCreated.data).toBe(publicMessage);
+    });
+  });
+
+  describe("When deleteContact function is called with an fakePhoneNumber", () => {
+    test("Then it should call the mockDispatch with an action creator and the fakePhoneNumber", async () => {
+      const fakePhoneNumber = "888555222";
+
+      const {
+        result: {
+          current: { deleteContact },
+        },
+      } = renderHook(useContactsApi, { wrapper: Wrapper });
+
+      await deleteContact(fakePhoneNumber);
+
+      expect(mockUseDispatch).toHaveBeenCalledWith(
+        deleteContactActionCreator(fakePhoneNumber)
+      );
     });
   });
 });

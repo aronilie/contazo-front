@@ -28,6 +28,10 @@ const handlers = [
   rest.post(`${apiUrl}create`, async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json("Contact successfully created"));
   }),
+
+  rest.delete(`${apiUrl}delete/888555222`, async (req, res, ctx) => {
+    return res(ctx.status(201), ctx.json("Contact deleted successfully"));
+  }),
 ];
 
 export default handlers;
