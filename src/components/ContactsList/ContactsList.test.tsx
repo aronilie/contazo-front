@@ -23,7 +23,7 @@ afterEach(() => {
 describe("Given a DestinationsList component", () => {
   describe("When it's render", () => {
     describe("And there is any destination availability", () => {
-      test("Then it should show 'You have no contacts yet.'", () => {
+      test("Then it should show 'You have no contacts yet! 😢'", () => {
         const expectedText = "You have no contacts yet! 😢";
 
         mockContacts = [];
