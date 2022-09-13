@@ -1,7 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { getContactsActionCreator } from "../slices/contactsSlice";
+import {
+  deleteContactActionCreator,
+  getContactsActionCreator,
+} from "../slices/contactsSlice";
 import { Contact, Contacts } from "../models/Contact";
 
 export const apiURL = process.env.REACT_APP_API_URL;
@@ -52,6 +55,22 @@ const useContactsApi = () => {
     return response;
   };
 
-  return { contacts, getContacts, getContactByPhoneNumber, createContact };
+  const deleteContact = async (phoneNumber: string) => {
+    await axios.delete(`${apiURL}delete/${phoneNumber}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    dispatch(deleteContactActionCreator(phoneNumber));
+  };
+
+  return {
+    contacts,
+    getContacts,
+    getContactByPhoneNumber,
+    createContact,
+    deleteContact,
+  };
 };
 export default useContactsApi;
