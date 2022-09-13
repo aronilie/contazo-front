@@ -6,7 +6,7 @@ import ContactsPage from "./ContactsPage";
 
 describe("Given a ContactsPage component", () => {
   describe("When it is instantiated", () => {
-    test("Then it should render the text 'You have no contacts yet.'", () => {
+    test("Then it should render the text 'You have no contacts yet! 😢'", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
@@ -15,7 +15,7 @@ describe("Given a ContactsPage component", () => {
         </Provider>
       );
 
-      const heading = screen.getByText("You have no contacts yet.");
+      const heading = screen.getByText("You have no contacts yet! 😢");
 
       expect(heading).toBeInTheDocument();
     });

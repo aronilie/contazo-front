@@ -66,7 +66,9 @@ export const ListContainerStyled = styled.div`
   @media (min-width: 800px) {
     margin: 0 1em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
   }
 
@@ -74,5 +76,17 @@ export const ListContainerStyled = styled.div`
     @media (min-width: 800px) {
       width: 800px;
     }
+  }
+
+  .text-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-text {
+    margin: 5em 0 0 0;
   }
 `;
