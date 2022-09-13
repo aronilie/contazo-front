@@ -164,6 +164,49 @@ const CreateContactStyled = styled.div`
       }
     }
   }
+
+  .form-third {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 1em 0;
+
+    @media (min-width: 800px) {
+      width: 100%;
+    }
+  }
+
+  .file {
+    &-upload {
+      display: none;
+    }
+
+    &-text {
+      color: ${styles.colors.black};
+      font-size: ${styles.fontSizes.small};
+      font-weight: ${styles.fontWeights.semiBold};
+      padding: 1em 0;
+    }
+
+    &-container {
+      width: 12em;
+      height: 3em;
+      background-color: ${styles.colors.main};
+      border-radius: 0.5em;
+      margin: 0 0 1em 0;
+    }
+
+    &-image {
+      font-size: ${styles.fontSizes.medium};
+      color: ${styles.colors.white};
+      font-weight: ${styles.fontWeights.semiBold};
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
 `;
 
 export default CreateContactStyled;
