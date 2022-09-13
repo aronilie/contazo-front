@@ -24,7 +24,7 @@ describe("Given a DestinationsList component", () => {
   describe("When it's render", () => {
     describe("And there is any destination availability", () => {
       test("Then it should show 'You have no contacts yet.'", () => {
-        const expectedText = "You have no contacts yet.";
+        const expectedText = "You have no contacts yet! 😢";
 
         mockContacts = [];
         mockSelectorReturn = [];
@@ -49,19 +49,6 @@ describe("Given a DestinationsList component", () => {
 
         expect(resultText).toBeInTheDocument();
       });
-
-      //   test("Then it should show an image with alt text 'icono mundo con un avión a su alrededo'", () => {
-      //     const expectedAltText = "Nepal";
-      //     mockDestinations = destinationsTest;
-
-      //     mockSelectorReturn = destinationsTest;
-      //     render(<DestinationsList />, { wrapper: Wrapper });
-
-      //     const resultImage: HTMLImageElement =
-      //       screen.getByAltText(expectedAltText);
-
-      //     expect(resultImage.alt).toBe(expectedAltText);
-      //   });
     });
   });
 });

@@ -19,7 +19,30 @@ const ContactsList = (): JSX.Element => {
   return (
     <>
       {!thereAreContacts ? (
-        <span>You have no contacts yet.</span>
+        <>
+          <ListContainerStyled>
+            <div className="list">
+              <ContactsListStyled>
+                <div className="header">
+                  <h1 className="title">Contacts</h1>
+                  <div className="link-create">
+                    <Link to="/create">
+                      <Button
+                        className="button-create"
+                        disabled={false}
+                        text="Create contact"
+                        type="submit"
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </ContactsListStyled>
+            </div>
+            <div className="text-container">
+              <span className="main-text">You have no contacts yet! 😢</span>
+            </div>
+          </ListContainerStyled>
+        </>
       ) : (
         <ListContainerStyled>
           <div className="list">
