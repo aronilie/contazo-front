@@ -42,7 +42,7 @@ const useContactsApi = () => {
     [token]
   );
 
-  const createContact = async (contact: Contact) => {
+  const createContact = async (contact: FormData) => {
     const response: AxiosResponse<string> = await axios.post(
       `${apiURL}create`,
       contact,

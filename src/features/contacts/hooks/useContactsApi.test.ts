@@ -80,7 +80,9 @@ describe("Given a useContactsApi hook", () => {
         },
       } = renderHook(useContactsApi, { wrapper: Wrapper });
 
-      const contactCreated = await createContact(fakeContact);
+      const formData = new FormData();
+      formData.append("hand", JSON.stringify(fakeContact));
+      const contactCreated = await createContact(formData);
 
       expect(contactCreated.data).toBe(publicMessage);
     });
