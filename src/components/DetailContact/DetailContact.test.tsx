@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "../../app/store";
 import DetailContact from "./DetailContact";
 import userEvent from "@testing-library/user-event";
+import { Contact } from "../../features/contacts/models/Contact";
 
 const mockDeleteFunction = { deleteContact: jest.fn() };
 jest.mock(
@@ -36,21 +37,22 @@ describe("Given a DetailContact component", () => {
       expect(receivedText).toBeInTheDocument();
     });
 
-    describe("And the contact passed for props don't have image", () => {
-      test("Then it should render the default image", () => {
-        const contact = {
+    describe("And the contact passed for props have an image", () => {
+      test("Then it should render the contact image", () => {
+        const contactWithImage: Contact = {
           name: "Dan",
           surname: "Abramov",
           email: "dan@test.com",
           phoneNumber: "888555222",
           owner: "owner",
-          image: undefined,
+          backupImage:
+            "https://sastdxyrrgemxsyrrbrd.supabase.co/storage/v1/object/public/contazo-images/public/1663070105072-logo.png",
         };
 
         render(
           <BrowserRouter>
             <Provider store={store}>
-              <DetailContact contact={contact} />
+              <DetailContact contact={contactWithImage} />
             </Provider>
           </BrowserRouter>
         );

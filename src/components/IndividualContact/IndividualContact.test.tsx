@@ -5,13 +5,15 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
+import { Contact } from "../../features/contacts/models/Contact";
 
-const contact = {
+const contact: Contact = {
   name: "Dan",
   surname: "Abramov",
   email: "dan@test.com",
   phoneNumber: "888555222",
   owner: "owner",
+  backupImage: undefined,
 };
 
 const navigate = jest.fn();
@@ -75,6 +77,34 @@ describe("Given a IndividualContact component", () => {
 
         expect(mockDeleteFunction.deleteContact).toHaveBeenCalledTimes(1);
       });
+    });
+  });
+
+  describe("And the contact passed for props have an image", () => {
+    test("Then it should render the contact image", async () => {
+      const contactWithImage: Contact = {
+        name: "Dan",
+        surname: "Abramov",
+        email: "dan@test.com",
+        phoneNumber: "888555222",
+        owner: "owner",
+        backupImage:
+          "https://sastdxyrrgemxsyrrbrd.supabase.co/storage/v1/object/public/contazo-images/public/1663070105072-logo.png",
+      };
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <IndividualContact contact={contactWithImage} />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const receivedImage = screen.getByRole("img", {
+        name: "contact representation",
+      });
+
+      expect(receivedImage).toBeInTheDocument();
     });
   });
 });
