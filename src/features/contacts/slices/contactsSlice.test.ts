@@ -26,8 +26,8 @@ describe("Given a usersSlice function", () => {
     });
   });
 
-  describe("When deleteHand reducer is called with a fake id as payload", () => {
-    test("Then it should return the previous state without the hand that has the fakeId", () => {
+  describe("When deleteContact reducer is called with a fake phoneNumber as payload", () => {
+    test("Then it should return the previous state without the contact that has the fakePhoneNumber", () => {
       const contacts = contactsSlice(
         [fakeContact],
         deleteContactActionCreator(fakeContact.phoneNumber)
