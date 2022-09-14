@@ -41,12 +41,14 @@ const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
           <span className="contact__phoneNumber">{contact.phoneNumber}</span>
         </div>
 
-        <FontAwesomeIcon
-          className="contact__icon"
-          icon={faCircleXmark}
-          onClick={deleteUserContact}
-          data-testid="icon"
-        />
+        <div className="contact__icon">
+          <FontAwesomeIcon
+            className="icon"
+            icon={faCircleXmark}
+            onClick={deleteUserContact}
+            data-testid="icon"
+          />
+        </div>
       </IndividualContactStyled>
     </li>
   );

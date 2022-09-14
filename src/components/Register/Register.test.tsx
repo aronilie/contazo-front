@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import { store } from "../../app/store";
 import Register from "./Register";
 
-const mockRegisterFunction = { register: jest.fn() };
+let mockRegisterFunction = { register: jest.fn() };
 jest.mock(
   "../../features/users/hooks/useUserApi",
   () => () => mockRegisterFunction
@@ -319,6 +319,55 @@ describe("Given a Register component", () => {
         await userEvent.click(submit);
 
         expect(mockRegisterFunction.register).not.toHaveBeenCalled();
+      });
+    });
+
+    describe("And the user type a phone number already taken", () => {
+      test("Then it should render the error message 'Phone number already taken.'", async () => {
+        mockRegisterFunction = {
+          register: jest.fn().mockRejectedValue(new Error()),
+        };
+        const errorText = "Phone number already taken.";
+        const newText = "test@prove";
+        const newNumber = 674218987;
+        render(
+          <MemoryRouter initialEntries={[route]}>
+            <Register />
+          </MemoryRouter>
+        );
+
+        const form = {
+          name: screen.getByLabelText("Name") as HTMLInputElement,
+          surname: screen.getByLabelText("Surname") as HTMLInputElement,
+          email: screen.getByLabelText("Email address") as HTMLInputElement,
+          phoneNumber: screen.getByLabelText(
+            "Phone number"
+          ) as HTMLInputElement,
+          passwd: screen.getByLabelText("Password") as HTMLInputElement,
+          repeatPassword: screen.getByLabelText(
+            "Repeat password"
+          ) as HTMLInputElement,
+        };
+
+        await userEvent.type(form.name, newText);
+        await userEvent.type(form.surname, newText);
+        await userEvent.type(form.email, newText);
+        await userEvent.type(form.phoneNumber, newNumber.toString());
+        await userEvent.type(form.passwd, newText);
+        await userEvent.type(form.repeatPassword, newText);
+
+        const submit = screen.getByRole("button", { name: "Register" });
+        await userEvent.click(submit);
+
+        let expectedError: HTMLElement;
+
+        setTimeout(() => {
+          expectedError = screen.getByText(errorText);
+        }, 1000);
+
+        setTimeout(() => {
+          expect(expectedError).toBeInTheDocument();
+        }, 1200);
       });
     });
   });

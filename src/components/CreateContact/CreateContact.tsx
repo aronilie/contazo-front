@@ -26,7 +26,10 @@ const CreateContact = (): JSX.Element => {
     phoneNumber: "",
     passwd: "",
     button: "",
+    file: "",
   };
+
+  const formDataInitialState = new FormData();
 
   const navigate = useNavigate();
   const { createContact } = useContactsApi();
@@ -34,9 +37,10 @@ const CreateContact = (): JSX.Element => {
   const [contactData, setContactData] = useState(contactDataInitialState);
   const [fieldStatus, setFieldStatus] = useState(fieldStatusInitialState);
   const [failStatus, setFailStatus] = useState(failStatusInitialState);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [fileStatus, setFileStatus] = useState(formDataInitialState);
 
   const [successStatus, setSuccessStatus] = useState("");
-  const formData = new FormData();
 
   const onChangeData = (
     event:
@@ -46,28 +50,31 @@ const CreateContact = (): JSX.Element => {
     setFieldStatus(fieldStatusInitialState);
     setContactData({ ...contactData, [event.target.id]: event.target.value });
 
-    if (hasEmptyFields) {
-      setFailStatus({ ...failStatus, button: "form-button__error--active" });
+    if (!hasEmptyFields) {
+      setFailStatus({ ...failStatus, button: "form-button--active" });
     }
 
-    if (!hasEmptyFields) {
+    if (hasEmptyFields) {
       setFailStatus({ ...failStatus, button: "" });
     }
   };
 
   const onChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFailStatus({ ...failStatus, file: "form__file" });
     const file = event.target.files![0];
-    formData.append("file", file);
+    fileStatus.append("file", file);
   };
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    setFailStatus(failStatusInitialState);
 
     if (contactData.email.search("@") < 1 && contactData.email.length > 0) {
       setFieldStatus({ ...fieldStatus, email: "form__input--wrong" });
       setFailStatus({ ...failStatus, email: "form-email__error--active" });
-    } else if (contactData.phoneNumber.length < 9) {
+    } else if (
+      contactData.phoneNumber.length < 9 ||
+      contactData.phoneNumber.length === 0
+    ) {
       setFieldStatus({ ...fieldStatus, phoneNumber: "form__input--wrong" });
       setFailStatus({
         ...failStatus,
@@ -75,17 +82,17 @@ const CreateContact = (): JSX.Element => {
       });
     } else {
       if (contactData.name === "" && contactData.surname === "") {
-        formData.append("name", contactData.phoneNumber);
+        fileStatus.append("name", contactData.phoneNumber);
       } else {
-        formData.append("name", contactData.name);
+        fileStatus.append("name", contactData.name);
       }
-      formData.append("surname", contactData.surname);
-      formData.append("email", contactData.email);
-      formData.append("phoneNumber", contactData.phoneNumber);
-      formData.append("owner", contactData.owner);
-      formData.append("file", contactData.image as File);
+      fileStatus.append("surname", contactData.surname);
+      fileStatus.append("email", contactData.email);
+      fileStatus.append("phoneNumber", contactData.phoneNumber);
+      fileStatus.append("owner", contactData.owner);
+      fileStatus.append("file", contactData.image as File);
       try {
-        await createContact(formData);
+        await createContact(fileStatus);
 
         setSuccessStatus("form-check__success--active");
         setContactData(contactDataInitialState);
@@ -94,7 +101,7 @@ const CreateContact = (): JSX.Element => {
     }
   };
 
-  const hasEmptyFields = contactData.phoneNumber.length < 1;
+  const hasEmptyFields = contactData.phoneNumber.length === 0;
   return (
     <CreateContactStyled>
       <div className="container">
@@ -166,14 +173,20 @@ const CreateContact = (): JSX.Element => {
           </div>
           <div className="form-third">
             <span className="file-text">Profile picture</span>
+
             <div className="file-container">
-              <label
-                htmlFor="image"
-                data-testid="upload-file"
-                className="file-image"
-              >
-                Upload picture
-              </label>
+              <div className="file-content">
+                <label
+                  htmlFor="image"
+                  data-testid="upload-file"
+                  className="file-image"
+                >
+                  Upload picture
+                </label>
+              </div>
+              {failStatus.file === "form__file" && (
+                <span className="file-uploaded">Successfully uploaded</span>
+              )}
             </div>
 
             <input
