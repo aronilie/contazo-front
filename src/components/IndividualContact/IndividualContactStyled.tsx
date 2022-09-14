@@ -11,12 +11,13 @@ const IndividualContactStyled = styled.div`
   @media (min-width: 800px) {
     border-bottom: none;
     padding: 0;
+    height: 75px;
   }
 
   .contact {
     &__text {
       width: 100%;
-      height: 40px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;

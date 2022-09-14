@@ -11,7 +11,8 @@ const HeaderStyled = styled.div`
       max-width: 200px;
 
       @media (min-width: 800px) {
-        max-width: 250px;
+        max-width: 300px;
+        padding: 0 0 0 5em;
       }
     }
   }
