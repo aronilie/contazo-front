@@ -65,7 +65,9 @@ describe("Given a Register component", () => {
         name: screen.getByLabelText("Name") as HTMLInputElement,
         surname: screen.getByLabelText("Surname") as HTMLInputElement,
         email: screen.getByLabelText("Email address") as HTMLInputElement,
-        phoneNumber: screen.getByLabelText("Phone number") as HTMLInputElement,
+        phoneNumber: screen.getByLabelText(
+          "Phone number *"
+        ) as HTMLInputElement,
       };
       await userEvent.type(form.name, newText);
       await userEvent.type(form.surname, newText);
@@ -94,7 +96,9 @@ describe("Given a Register component", () => {
         name: screen.getByLabelText("Name") as HTMLInputElement,
         surname: screen.getByLabelText("Surname") as HTMLInputElement,
         email: screen.getByLabelText("Email address") as HTMLInputElement,
-        phoneNumber: screen.getByLabelText("Phone number") as HTMLInputElement,
+        phoneNumber: screen.getByLabelText(
+          "Phone number *"
+        ) as HTMLInputElement,
         image: screen.getByTestId("upload-file"),
       };
       await userEvent.type(form.name, newText);
@@ -146,7 +150,7 @@ describe("Given a Register component", () => {
           surname: screen.getByLabelText("Surname") as HTMLInputElement,
           email: screen.getByLabelText("Email address") as HTMLInputElement,
           phoneNumber: screen.getByLabelText(
-            "Phone number"
+            "Phone number *"
           ) as HTMLInputElement,
         };
         const button = screen.getByRole("button", { name: "Create contact" });
@@ -173,7 +177,7 @@ describe("Given a Register component", () => {
           surname: screen.getByLabelText("Surname") as HTMLInputElement,
           email: screen.getByLabelText("Email address") as HTMLInputElement,
           phoneNumber: screen.getByLabelText(
-            "Phone number"
+            "Phone number *"
           ) as HTMLInputElement,
         };
         const button = screen.getByRole("button", { name: "Create contact" });
@@ -206,7 +210,7 @@ describe("Given a Register component", () => {
           surname: screen.getByLabelText("Surname") as HTMLInputElement,
           email: screen.getByLabelText("Email address") as HTMLInputElement,
           phoneNumber: screen.getByLabelText(
-            "Phone number"
+            "Phone number *"
           ) as HTMLInputElement,
         };
 
@@ -240,7 +244,7 @@ describe("Given a Register component", () => {
           surname: screen.getByLabelText("Surname") as HTMLInputElement,
           email: screen.getByLabelText("Email address") as HTMLInputElement,
           phoneNumber: screen.getByLabelText(
-            "Phone number"
+            "Phone number *"
           ) as HTMLInputElement,
         };
 
@@ -253,6 +257,39 @@ describe("Given a Register component", () => {
         await userEvent.click(submit);
 
         expect(mockCreateFunction.createContact).not.toHaveBeenCalled();
+      });
+    });
+
+    describe("And the user don't type a name and a surname", () => {
+      test("Then it should call the mockRegister function", async () => {
+        const newText = "test@prove";
+        const newNumber = 888555222;
+
+        render(
+          <MemoryRouter>
+            <Provider store={store}>
+              <CreateContact />
+            </Provider>
+          </MemoryRouter>
+        );
+
+        const form = {
+          name: screen.getByLabelText("Name") as HTMLInputElement,
+          surname: screen.getByLabelText("Surname") as HTMLInputElement,
+          email: screen.getByLabelText("Email address") as HTMLInputElement,
+          phoneNumber: screen.getByLabelText(
+            "Phone number *"
+          ) as HTMLInputElement,
+          image: screen.getByTestId("upload-file"),
+        };
+        await userEvent.type(form.email, newText);
+        await userEvent.type(form.phoneNumber, newNumber.toString());
+        await userEvent.upload(form.image, new File([""], ""));
+
+        const submit = screen.getByRole("button", { name: "Create contact" });
+        await userEvent.click(submit);
+
+        expect(mockCreateFunction.createContact).toHaveBeenCalled();
       });
     });
   });

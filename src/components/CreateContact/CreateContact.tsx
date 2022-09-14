@@ -64,7 +64,7 @@ const CreateContact = (): JSX.Element => {
     event.preventDefault();
     setFailStatus(failStatusInitialState);
 
-    if (contactData.email.search("@") < 1) {
+    if (contactData.email.search("@") < 1 && contactData.email.length > 0) {
       setFieldStatus({ ...fieldStatus, email: "form__input--wrong" });
       setFailStatus({ ...failStatus, email: "form-email__error--active" });
     } else if (contactData.phoneNumber.length < 9) {
@@ -74,7 +74,11 @@ const CreateContact = (): JSX.Element => {
         phoneNumber: "form-phone__error--active",
       });
     } else {
-      formData.append("name", contactData.name);
+      if (contactData.name === "" && contactData.surname === "") {
+        formData.append("name", contactData.phoneNumber);
+      } else {
+        formData.append("name", contactData.name);
+      }
       formData.append("surname", contactData.surname);
       formData.append("email", contactData.email);
       formData.append("phoneNumber", contactData.phoneNumber);
@@ -147,7 +151,7 @@ const CreateContact = (): JSX.Element => {
             <div className="form__group">
               <div className="form__label-container">
                 <label htmlFor="phoneNumber" className="form__label">
-                  Phone number
+                  Phone number *
                 </label>
               </div>
               <input
