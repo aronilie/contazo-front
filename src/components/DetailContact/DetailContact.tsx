@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useContactsApi from "../../features/contacts/hooks/useContactsApi";
 import { Contact } from "../../features/contacts/models/Contact";
 import {
+  defaultContactImage,
   mailIcon,
   mobileIcon,
   telegramIcon,
@@ -18,7 +19,11 @@ const DetailContact = ({ contact }: DetailContactProps): JSX.Element => {
   const { deleteContact } = useContactsApi();
   const navigate = useNavigate();
 
-  const contactImage = contact.backupImage;
+  let contactImage = contact.backupImage;
+
+  if (!contact.backupImage) {
+    contactImage = defaultContactImage;
+  }
 
   const deleteUserContact = () => {
     deleteContact(contact.phoneNumber);
