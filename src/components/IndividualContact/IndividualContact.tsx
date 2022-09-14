@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import { Contact } from "../../features/contacts/models/Contact";
 import IndividualContactStyled from "./IndividualContactStyled";
-import { defaultContactImage } from "../../utils/components-utils/defaultObjects";
 import { useNavigate } from "react-router-dom";
 import useContactsApi from "../../features/contacts/hooks/useContactsApi";
 
@@ -10,16 +9,11 @@ interface ContactProps {
   contact: Contact;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
-  let contactImage = contact.backupImage;
+  const contactImage = contact.backupImage;
   const navigate = useNavigate();
 
   const { deleteContact } = useContactsApi();
-
-  if (!contact.backupImage) {
-    contactImage = defaultContactImage;
-  }
 
   const moveToDetails = () => {
     navigate(`/contact/${contact.phoneNumber}`);
