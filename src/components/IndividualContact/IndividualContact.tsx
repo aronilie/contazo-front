@@ -30,6 +30,8 @@ const IndividualContact = ({ contact }: ContactProps): JSX.Element => {
           src={contactImage}
           alt="contact representation"
           className="contact__image"
+          width={40}
+          height={40}
         />
         <div className="contact__text" onClick={moveToDetails}>
           <div className="contact__fullname">
