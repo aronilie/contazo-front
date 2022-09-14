@@ -17,7 +17,7 @@ const IndividualContactStyled = styled.div`
   .contact {
     &__text {
       width: 100%;
-
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -89,6 +89,10 @@ const IndividualContactStyled = styled.div`
       font-size: ${styles.fontSizes.large};
       padding: 0 1em;
     }
+  }
+
+  .icon {
+    cursor: pointer;
   }
 `;
 
