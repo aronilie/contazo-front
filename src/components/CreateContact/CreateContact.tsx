@@ -37,6 +37,7 @@ const CreateContact = (): JSX.Element => {
   const [contactData, setContactData] = useState(contactDataInitialState);
   const [fieldStatus, setFieldStatus] = useState(fieldStatusInitialState);
   const [failStatus, setFailStatus] = useState(failStatusInitialState);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [fileStatus, setFileStatus] = useState(formDataInitialState);
 
   const [successStatus, setSuccessStatus] = useState("");
