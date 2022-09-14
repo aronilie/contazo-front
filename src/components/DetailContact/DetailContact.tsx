@@ -85,24 +85,24 @@ const DetailContact = ({ contact }: DetailContactProps): JSX.Element => {
           <div className="section">
             <span className="section__title">Social</span>
             <div className="feature">
-              <span className="feature__information-main">Telegram</span>
-              <div className="icon">
-                <a href={`https://t.me/${contact.name}${contact.surname}`}>
-                  <img
-                    src={telegramIcon}
-                    alt="Mobile icon"
-                    className="icon__element"
-                  />
-                </a>
-              </div>
-            </div>
-            <div className="feature">
               <span className="feature__information-main">Whatsapp</span>
               <div className="icon">
                 <a href={`https://wa.me/${contact.phoneNumber}`}>
                   <img
                     src={whatsAppIcon}
                     alt="Email icon"
+                    className="icon__element"
+                  />
+                </a>
+              </div>
+            </div>
+            <div className="feature">
+              <span className="feature__information-main">Telegram</span>
+              <div className="icon">
+                <a href={`https://t.me/${contact.name}${contact.surname}`}>
+                  <img
+                    src={telegramIcon}
+                    alt="Mobile icon"
                     className="icon__element"
                   />
                 </a>
