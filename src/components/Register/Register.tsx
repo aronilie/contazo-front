@@ -20,6 +20,7 @@ const Register = (): JSX.Element => {
     phoneNumber: "",
     passwd: "",
     repeatPassword: "",
+    user: "",
   };
 
   const failStatusInitialState = {
@@ -28,6 +29,7 @@ const Register = (): JSX.Element => {
     passwd: "",
     repeatPassword: "",
     button: "",
+    user: "",
   };
 
   const { register } = useUserApi();
@@ -38,7 +40,7 @@ const Register = (): JSX.Element => {
   const [failStatus, setFailStatus] = useState(failStatusInitialState);
   const [successStatus, setSuccessStatus] = useState("");
 
-  const handleSubmit = (event: SyntheticEvent) => {
+  const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
 
     if (formData.email.search("@") < 1) {
@@ -63,19 +65,27 @@ const Register = (): JSX.Element => {
         repeatPassword: "form-check__error--active",
       });
     } else {
-      register({
-        name: formData.name,
-        surname: formData.surname,
-        email: formData.email,
-        phoneNumber: formData.phoneNumber,
-        password: formData.password,
-      });
+      try {
+        await register({
+          name: formData.name,
+          surname: formData.surname,
+          email: formData.email,
+          phoneNumber: formData.phoneNumber,
+          password: formData.password,
+        });
 
-      setSuccessStatus("form-check__success--active");
-      setFormData(formDataInitialState);
-      setTimeout(() => {
-        navigate("/login");
-      }, 1000);
+        setSuccessStatus("form-check__success--active");
+        setFormData(formDataInitialState);
+        setTimeout(() => {
+          navigate("/login");
+        }, 1900);
+      } catch (error) {
+        setFieldStatus({ ...fieldStatus, user: "form__input--wrong" });
+        setFailStatus({
+          ...failStatus,
+          user: "form-user__error--active",
+        });
+      }
     }
   };
 
@@ -161,7 +171,7 @@ const Register = (): JSX.Element => {
             <input
               type="number"
               id="phoneNumber"
-              className={`form__input ${fieldStatus.phoneNumber}`}
+              className={`form__input ${fieldStatus.phoneNumber} ${fieldStatus.user}`}
               autoComplete="off"
               required
               onChange={onChangeData}
@@ -222,6 +232,13 @@ const Register = (): JSX.Element => {
         {fieldStatus.repeatPassword === "form__input--wrong" && (
           <div className={`form-check form-check__error--active`}>
             <span className="form-check__error">Passwords don't match.</span>
+          </div>
+        )}
+        {fieldStatus.user === "form__input--wrong" && (
+          <div className={`form-user form-user__error--active`}>
+            <span className="form-user__error">
+              This phone number is already taken.
+            </span>
           </div>
         )}
         {successStatus === "form-check__success--active" && (
