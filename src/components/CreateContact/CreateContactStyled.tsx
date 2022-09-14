@@ -154,15 +154,19 @@ const CreateContactStyled = styled.div`
       }
     }
 
-    &-button__error--active {
-      background-color: ${styles.colors.mainAction};
-    }
-
     &__button {
+      background-color: ${styles.colors.mainAction};
+      cursor: default;
+
       @media (min-width: 800px) {
         max-width: 400px;
       }
     }
+  }
+
+  .form-button--active {
+    background-color: ${styles.colors.main};
+    cursor: pointer;
   }
 
   .form-third {
@@ -188,11 +192,16 @@ const CreateContactStyled = styled.div`
     }
 
     &-container {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+    }
+
+    &-content {
       width: 12em;
       height: 3em;
       background-color: ${styles.colors.main};
       border-radius: 0.5em;
-      margin: 0 0 1em 0;
     }
 
     &-image {

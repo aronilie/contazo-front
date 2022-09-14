@@ -111,6 +111,16 @@ const RegisterStyled = styled.div`
       }
     }
 
+    &-user {
+      display: none;
+      padding: 0 0 2.5em 0;
+
+      &__error--active {
+        color: ${styles.colors.red};
+        display: block;
+      }
+    }
+
     &-check {
       display: none;
       padding: 0 0 2.5em 0;
