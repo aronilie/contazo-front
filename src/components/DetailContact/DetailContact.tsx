@@ -55,11 +55,13 @@ const DetailContact = ({ contact }: DetailContactProps): JSX.Element => {
                 <span className="feature__information-text">Mobile</span>
               </div>
               <div className="icon">
-                <img
-                  src={mobileIcon}
-                  alt="Mobile icon"
-                  className="icon__element"
-                />
+                <a href={`tel:${contact.phoneNumber}`}>
+                  <img
+                    src={mobileIcon}
+                    alt="Mobile icon"
+                    className="icon__element"
+                  />
+                </a>
               </div>
             </div>
             <div className="feature">
@@ -70,34 +72,40 @@ const DetailContact = ({ contact }: DetailContactProps): JSX.Element => {
                 <span className="feature__information-text">Email</span>
               </div>
               <div className="icon">
-                <img
-                  src={mailIcon}
-                  alt="Email icon"
-                  className="icon__element"
-                />
+                <a href={`mailto:${contact.email}`}>
+                  <img
+                    src={mailIcon}
+                    alt="Email icon"
+                    className="icon__element"
+                  />
+                </a>
               </div>
             </div>
           </div>
           <div className="section">
             <span className="section__title">Social</span>
             <div className="feature">
-              <span className="feature__information-main">Telegram</span>
+              <span className="feature__information-main">Whatsapp</span>
               <div className="icon">
-                <img
-                  src={telegramIcon}
-                  alt="Mobile icon"
-                  className="icon__element"
-                />
+                <a href={`https://wa.me/${contact.phoneNumber}`}>
+                  <img
+                    src={whatsAppIcon}
+                    alt="Email icon"
+                    className="icon__element"
+                  />
+                </a>
               </div>
             </div>
             <div className="feature">
-              <span className="feature__information-main">Whatsapp</span>
+              <span className="feature__information-main">Telegram</span>
               <div className="icon">
-                <img
-                  src={whatsAppIcon}
-                  alt="Email icon"
-                  className="icon__element"
-                />
+                <a href={`https://t.me/${contact.name}${contact.surname}`}>
+                  <img
+                    src={telegramIcon}
+                    alt="Mobile icon"
+                    className="icon__element"
+                  />
+                </a>
               </div>
             </div>
           </div>
