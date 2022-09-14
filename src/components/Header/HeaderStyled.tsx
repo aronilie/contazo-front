@@ -8,7 +8,7 @@ const HeaderStyled = styled.div`
 
   .header {
     &__logo {
-      max-width: 200px;
+      max-width: 170px;
 
       @media (min-width: 800px) {
         max-width: 300px;

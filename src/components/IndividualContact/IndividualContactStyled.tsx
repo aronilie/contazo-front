@@ -40,7 +40,7 @@ const IndividualContactStyled = styled.div`
 
     &__name {
       color: ${styles.colors.black};
-      font-weight: ${styles.fontWeights.semiBold};
+      font-weight: ${styles.fontWeights.regular};
       font-size: ${styles.fontSizes.smally};
       padding: 0 0.5em 0 0;
 
@@ -52,7 +52,7 @@ const IndividualContactStyled = styled.div`
 
     &__surname {
       color: ${styles.colors.black};
-      font-weight: ${styles.fontWeights.semiBold};
+      font-weight: ${styles.fontWeights.regular};
       font-size: ${styles.fontSizes.smally};
 
       @media (min-width: 800px) {
