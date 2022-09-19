@@ -81,7 +81,7 @@ describe("Given a useContactsApi hook", () => {
       } = renderHook(useContactsApi, { wrapper: Wrapper });
 
       const formData = new FormData();
-      formData.append("hand", JSON.stringify(fakeContact));
+      formData.append("contact", JSON.stringify(fakeContact));
       const contactCreated = await createContact(formData);
 
       expect(contactCreated.data).toBe(publicMessage);
@@ -103,6 +103,25 @@ describe("Given a useContactsApi hook", () => {
       expect(mockUseDispatch).toHaveBeenCalledWith(
         deleteContactActionCreator(fakePhoneNumber)
       );
+    });
+  });
+
+  describe("When updateContact function is called with a fake contact", () => {
+    test("Then it should return the response message 'Contact updated successfully'", async () => {
+      const publicMessage = "Contact updated successfully";
+
+      const {
+        result: {
+          current: { updateContact },
+        },
+      } = renderHook(useContactsApi, { wrapper: Wrapper });
+
+      const { phoneNumber } = fakeContact;
+      const formData = new FormData();
+      formData.append("contact", JSON.stringify(fakeContact));
+      const contactUpdated = await updateContact(phoneNumber, formData);
+
+      expect(contactUpdated.data).toBe(publicMessage);
     });
   });
 });
