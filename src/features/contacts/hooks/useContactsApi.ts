@@ -65,12 +65,26 @@ const useContactsApi = () => {
     dispatch(deleteContactActionCreator(phoneNumber));
   };
 
+  const updateContact = async (phoneNumber: string, contact: FormData) => {
+    const response: AxiosResponse<string> = await axios.post(
+      `${apiURL}update/${phoneNumber}`,
+      contact,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  };
+
   return {
     contacts,
     getContacts,
     getContactByPhoneNumber,
     createContact,
     deleteContact,
+    updateContact,
   };
 };
 export default useContactsApi;
