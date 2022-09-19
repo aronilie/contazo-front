@@ -32,6 +32,10 @@ const handlers = [
   rest.delete(`${apiUrl}delete/888555222`, async (req, res, ctx) => {
     return res(ctx.status(201), ctx.json("Contact deleted successfully"));
   }),
+
+  rest.post(`${apiUrl}update/888555222`, async (req, res, ctx) => {
+    return res(ctx.status(201), ctx.json("Contact updated successfully"));
+  }),
 ];
 
 export default handlers;
