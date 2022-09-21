@@ -51,7 +51,7 @@ const UpdateContact = ({ contact }: UpdateContactProps): JSX.Element => {
     if (contactData.name === "") {
       setContactData(contactDataInitialState);
     }
-  });
+  }, 100);
 
   const onChangeData = (
     event:
