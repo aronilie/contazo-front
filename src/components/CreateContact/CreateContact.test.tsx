@@ -6,8 +6,6 @@ import { store } from "../../app/store";
 import CreateContact from "./CreateContact";
 import * as router from "react-router";
 
-const route = "/register";
-
 const mockCreateFunction = { createContact: jest.fn() };
 jest.mock(
   "../../features/contacts/hooks/useContactsApi",
@@ -27,7 +25,7 @@ beforeEach(() => {
   jest.spyOn(router, "useNavigate").mockImplementation(() => navigate);
 });
 
-describe("Given a Register component", () => {
+describe("Given a CreateContact component", () => {
   describe("When it is instantiated", () => {
     test("Then it should render a heading, name, surname, email inputs and a submit button", () => {
       render(
@@ -117,7 +115,7 @@ describe("Given a Register component", () => {
       test("Then it should render a phoneNumber with the text", async () => {
         const newNumber = 674218987;
         render(
-          <MemoryRouter initialEntries={[route]}>
+          <MemoryRouter>
             <Provider store={store}>
               <CreateContact />
             </Provider>
@@ -139,7 +137,7 @@ describe("Given a Register component", () => {
       test("Then the button should be disabled", async () => {
         const text = "test text";
         render(
-          <MemoryRouter initialEntries={[route]}>
+          <MemoryRouter>
             <Provider store={store}>
               <CreateContact />
             </Provider>
@@ -166,7 +164,7 @@ describe("Given a Register component", () => {
         const text = "test";
         const number = 888555888;
         render(
-          <MemoryRouter initialEntries={[route]}>
+          <MemoryRouter>
             <Provider store={store}>
               <CreateContact />
             </Provider>
@@ -199,7 +197,7 @@ describe("Given a Register component", () => {
         const email = "email";
         const number = 555000888;
         render(
-          <MemoryRouter initialEntries={[route]}>
+          <MemoryRouter>
             <Provider store={store}>
               <CreateContact />
             </Provider>
@@ -233,7 +231,7 @@ describe("Given a Register component", () => {
         const number = 555;
 
         render(
-          <MemoryRouter initialEntries={[route]}>
+          <MemoryRouter>
             <Provider store={store}>
               <CreateContact />
             </Provider>
