@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useContactsApi from "../../features/contacts/hooks/useContactsApi";
 import { Contact } from "../../features/contacts/models/Contact";
 import {
@@ -34,7 +34,7 @@ const DetailContact = ({ contact }: DetailContactProps): JSX.Element => {
       <div className="container">
         <div className="header">
           <img
-            src={contactImage}
+            src={contactImage as string}
             alt="Contact presentation"
             className="header__image"
           />
@@ -118,12 +118,17 @@ const DetailContact = ({ contact }: DetailContactProps): JSX.Element => {
               type="submit"
               disabled={false}
             />
-            <Button
-              className="buttons__default"
-              text="Edit contact"
-              type="submit"
-              disabled={false}
-            />
+            <Link
+              className="buttons__link"
+              to={`/update/${contact.phoneNumber}`}
+            >
+              <Button
+                className="buttons__default"
+                text="Edit contact"
+                type="submit"
+                disabled={false}
+              />
+            </Link>
           </div>
 
           <div onClick={deleteUserContact}>
