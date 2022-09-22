@@ -10,7 +10,7 @@ const DetailContactPage = (): JSX.Element => {
     surname: "",
     email: "",
     phoneNumber: "",
-    image: "",
+    backupImage: "",
     owner: "",
   };
 
