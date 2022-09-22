@@ -1,36 +1,7 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import DetailContact from "../../components/DetailContact/DetailContact";
-import useContactsApi from "../../features/contacts/hooks/useContactsApi";
-import { Contact } from "../../features/contacts/models/Contact";
+import GetContactPage from "../GetContactPage/GetContactPage";
 
 const DetailContactPage = (): JSX.Element => {
-  const initialState = {
-    name: "",
-    surname: "",
-    email: "",
-    phoneNumber: "",
-    backupImage: "",
-    owner: "",
-  };
-
-  const { id } = useParams();
-  const { getContactByPhoneNumber } = useContactsApi();
-
-  const [contact, setContact] = useState<Contact>(initialState);
-
-  useEffect(() => {
-    (async () => {
-      const phoneNumberContact: Contact = await getContactByPhoneNumber(id!);
-      setContact(phoneNumberContact);
-    })();
-  }, [getContactByPhoneNumber, id]);
-
-  return (
-    <>
-      <DetailContact contact={contact} />
-    </>
-  );
+  return <GetContactPage type="detail" />;
 };
 
 export default DetailContactPage;
