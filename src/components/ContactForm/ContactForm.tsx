@@ -81,7 +81,12 @@ const ContactForm = ({ contact }: UpdateContactProps): JSX.Element => {
 
   if (contact) {
     setTimeout(() => {
-      if (contactData.name === "") {
+      if (
+        contactData.name === "" &&
+        contactData.surname === "" &&
+        contactData.email === "" &&
+        contactData.phoneNumber === ""
+      ) {
         setContactData(contactDataDefaultState);
       }
     }, 100);
@@ -162,7 +167,7 @@ const ContactForm = ({ contact }: UpdateContactProps): JSX.Element => {
   let successText: string;
 
   if (contact) {
-    navigation = `/contact/${contactData.phoneNumber}`;
+    navigation = `/contact/${contact.phoneNumber}`;
     buttonText = "Save";
     headerText = "Edit contact";
     successText = "Contact successfully updated.";
