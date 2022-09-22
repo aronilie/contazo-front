@@ -282,7 +282,7 @@ describe("Given a UpdateContact component", () => {
         await userEvent.click(icon);
 
         expect(navigate).toHaveBeenCalledTimes(1);
-      }, 2000);
+      });
     });
   });
 });

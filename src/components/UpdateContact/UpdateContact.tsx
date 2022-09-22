@@ -17,6 +17,15 @@ interface UpdateContactProps {
 
 const UpdateContact = ({ contact }: UpdateContactProps): JSX.Element => {
   const contactDataInitialState: ContactDataInitialState = {
+    name: "",
+    surname: "",
+    email: "",
+    phoneNumber: "",
+    image: "",
+    owner: "",
+  };
+
+  const contactDataDefaultState: ContactDataInitialState = {
     name: contact.name,
     surname: contact.surname,
     email: contact.email,
@@ -39,7 +48,7 @@ const UpdateContact = ({ contact }: UpdateContactProps): JSX.Element => {
   const { id } = useParams();
   const { updateContact } = useContactsApi();
 
-  const [contactData, setContactData] = useState(contactDataInitialState);
+  const [contactData, setContactData] = useState(contactDataDefaultState);
   const [fieldStatus, setFieldStatus] = useState(fieldStatusInitialState);
   const [failStatus, setFailStatus] = useState(failStatusInitialState);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -49,7 +58,7 @@ const UpdateContact = ({ contact }: UpdateContactProps): JSX.Element => {
 
   setTimeout(() => {
     if (contactData.name === "") {
-      setContactData(contactDataInitialState);
+      setContactData(contactDataDefaultState);
     }
   }, 100);
 
