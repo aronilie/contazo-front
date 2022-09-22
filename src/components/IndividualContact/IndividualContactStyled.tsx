@@ -7,6 +7,12 @@ const IndividualContactStyled = styled.div`
   justify-content: space-between;
   padding: 0.6em 0;
   border-bottom: 2px solid ${styles.colors.grey};
+  transition: transform 0.3s;
+
+  :hover {
+    transform: scale(1.01);
+    background-color: ${styles.colors.grey};
+  }
 
   @media (min-width: 800px) {
     border-bottom: none;

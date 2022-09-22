@@ -142,6 +142,14 @@ const DetailContactStyled = styled.div`
           gap: 7em;
         }
       }
+
+      &__default {
+        flex: 1;
+      }
+
+      &__link {
+        flex: 1;
+      }
     }
   }
 `;

@@ -216,6 +216,17 @@ const CreateContactStyled = styled.div`
       cursor: pointer;
     }
   }
+
+  .header {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
+
+    &__icon {
+      cursor: pointer;
+    }
+  }
 `;
 
 export default CreateContactStyled;
