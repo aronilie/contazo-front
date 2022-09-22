@@ -12,6 +12,7 @@ import Navigation from "./components/Navigation/Navigation";
 import Header from "./components/Header/Header";
 import ReverseRouteProtector from "./components/RouteProtector/ReverseRouteProtector";
 import RouteProtector from "./components/RouteProtector/RouteProtector";
+import UpdateContactPage from "./pages/UpdateContactPage/UpdateContactPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -59,6 +60,14 @@ function App() {
           element={
             <RouteProtector>
               <DetailContactPage />
+            </RouteProtector>
+          }
+        />
+        <Route
+          path="/update/:id"
+          element={
+            <RouteProtector>
+              <UpdateContactPage />
             </RouteProtector>
           }
         />
