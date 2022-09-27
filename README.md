@@ -1,46 +1,57 @@
-# Getting Started with Create React App
+# Contazo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+Contazo is an online contacts book that allows yout to view, create, delete and update your own contacts. Also, Contazo allows you to call, send an email or send a Whatsapp message to your contacts.
 
-## Available Scripts
+View project deploy [here](https://contazo.netlify.app/).
 
-In the project directory, you can run:
+## Structure
 
-### `npm start`
+This project has two repositories, one for the front-end part and the other for the back-end part.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+View back-end repository [here](https://github.com/aronilie/contazo-back).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Used technologies
 
-### `npm test`
+🔸 FRONT:
+React | Redux | Styled Components | Typescript | Jest | MSW | Font Awesome
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🔸 BACK:
+NodeJS | ExpressJS | MongoDB | Mongoose | JWT | Supabase | Jest | Supertest
 
-### `npm run build`
+🔸 TOOLS:
+Trello | Postman | Figma | Git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Metrics
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+🔥 Lighthouse
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![lighthouse-metrics](https://user-images.githubusercontent.com/105882007/192598265-766e0b2f-baf5-499e-9b73-28b69b3ef966.png)
 
-### `npm run eject`
+📈 [Back SonarCloud metrics](https://sonarcloud.io/summary/new_code?id=isdi-coders-2022_Aron-Ilie_Back-Final-Project-202207-BCN)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+📈 [Front SonarCloud metrics](https://sonarcloud.io/summary/new_code?id=isdi-coders-2022_Aron-Ilie_Front-Final-Project-202207-BCN)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Endpoints
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+🔹 /users/register ➡️ POST
+Register a user. The payload should have a phone number and a password which should be introduced the same twice.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+🔹 /users/login ➡️ POST
+Login with an existing user to get a valid token. The payload should have an existing phone number and password.
 
-## Learn More
+🔹 /create ➡️ POST
+Create a contact. The payload should necessary have a phone number. Also can be created with a name, surname, email and image.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+🔹 /update/:phoneId ➡️ POST
+Edit a contact. The fields that can be edited are all that the contact can have: name, surname, email, phoneNumber and image.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🔹 /contacts ➡️ GET
+Get all the contacts in a list with their image, name and surname for mobile and also the email and phone number for desktop.
+
+🔹 /contacts/:phoneId  ➡️ GET
+Get a specific contact detailed.
+
+🔹 /delete/:phoneId ➡️ DEL
+Delete a contact with it's phone number as url parameter.
+
+Note that all endpoints excepting login and register can only be used if the user is logged in the application.
