@@ -191,7 +191,6 @@ const ContactForm = ({ contact }: UpdateContactProps): JSX.Element => {
           />
           <h1 className="title">{headerText}</h1>
         </div>
-
         <form onSubmit={handleSubmit} className="form">
           <div className="form-half">
             <div className="form__group">
@@ -259,7 +258,6 @@ const ContactForm = ({ contact }: UpdateContactProps): JSX.Element => {
           </div>
           <div className="form-third">
             <span className="file-text">Profile picture</span>
-
             <div className="file-container">
               <div className="file-content">
                 <label
@@ -274,7 +272,6 @@ const ContactForm = ({ contact }: UpdateContactProps): JSX.Element => {
                 <span className="file-uploaded">Successfully uploaded</span>
               )}
             </div>
-
             <input
               type="file"
               id="image"
