@@ -2,8 +2,6 @@
 
 Contazo is an online contacts book that allows yout to view, create, delete and update your own contacts. Also, Contazo allows you to call, send an email or send a Whatsapp message to your contacts.
 
-View project deploy [here](https://contazo.netlify.app/).
-
 ## Structure
 
 This project has two repositories, one for the front-end part and the other for the back-end part.
